@@ -4,37 +4,29 @@ import java.io.Serializable;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
-
 @Named
-@ApplicationScoped
+@RequestScoped
 public class credValidation implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	private ConcurrentHashMap<String,String> users;
-	
-	private String username;
-	private String password;
+
+	@Inject
+	private RegisteredUsers users; // Lista de utilizadores
+
+	@Inject
+	private LoggedUser loggedUser; // Utilizador corrente
+
+	private String username; // String para validação de login
+	private String password; // String para validação de login
 	private String result = "";
 	private boolean errorMsg = false;
-
-	public credValidation() {
-		users = new ConcurrentHashMap<String, String>();
-		users.put("ricardo", "123");
-		users.put("rafaela", "456");
-	}
-
-	public ConcurrentHashMap<String, String> getUsers() {
-		return users;
-	}
-
-	public void setUsers(ConcurrentHashMap<String, String> users) {
-		this.users = users;
-	}
 
 	public String getUsername() {
 		return username;
@@ -53,12 +45,19 @@ public class credValidation implements Serializable {
 	}
 
 	public String doLogin() {
-		if (users.containsKey(username)) {
-			if (password.equals(users.get(username))) {
-				errorMsg = false;
-				result = "calc1.xhtml?faces-redirect=true";
-				username = "";
-				password = "";
+		if (users.getUsers().containsKey(username)) {
+			if (password.equals(users.getUsers().get(username))) {
+				if (users.getLoggedUsers().contains(username)) {
+					errorMsg = true;
+					result = "Username já logado!";
+				} else {
+					errorMsg = false;
+					loggedUser.setUsername(username);
+					users.getLoggedUsers().add(username);
+					result = "calc1.xhtml?faces-redirect=true";
+					username = "";
+					password = "";
+				}
 			} else {
 				result = "Password inválida";
 				errorMsg = true;
@@ -69,9 +68,14 @@ public class credValidation implements Serializable {
 		}
 		return result;
 	}
+
+	@ManagedProperty("#{loggedUser}")
+	FacesContext faces;
 	
-	public void doLogout() {
-		
+	public String doLogout() {
+		faces.getCurrentInstance().getExternalContext().invalidateSession();
+		users.getLoggedUsers().remove(loggedUser.getUsername());
+		return "/login.xhtml?faces-redirect=true";
 	}
 
 	public boolean isErrorMsg() {
@@ -87,12 +91,12 @@ public class credValidation implements Serializable {
 	}
 
 	public void newUser() {
-		if (users.containsKey(username)) {
+		if (users.getUsers().containsKey(username)) {
 			errorMsg = true;
 			result = "Já existente!";
 		} else {
 			if (password != null) {
-				users.put(username, password);
+				users.getUsers().put(username, password);
 				username = "";
 				password = "";
 				errorMsg = true;
