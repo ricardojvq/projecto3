@@ -13,6 +13,10 @@
 <body>
 	<ui:composition template="/WEB-INF/layout.xhtml">
 		<ui:define name="conteudo">
+		<div id="topbar">
+		<div id="welcomeMsg">Bem-vindo username.</div>
+		<div id="logoutButton"><h:commandButton action="#{credValidation.doLogout}" value="Logout" /></div>
+		</div>
 			<div id="calcSimples">
 				<div id="screen">
 					<h:outputText id="ecra" styleClass="screen" value="#{calculator.expression}" />

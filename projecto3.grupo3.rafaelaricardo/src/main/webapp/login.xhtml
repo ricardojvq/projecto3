@@ -16,15 +16,16 @@
 	<h:form>
 	<div id ="uname">
 		<h:outputText value="Username" />
-		<p:inputText value="#{credValidation.username}"></p:inputText>
+		<p:inputText value="#{credValidation.username}" required="true" requiredMessage="Obrigatório"></p:inputText>
 		</div>
 		<div id="pword">
 		<h:outputText value="Password" />
-		<p:password value="#{credValidation.password}" />
+		<p:password value="#{credValidation.password}" required="true" requiredMessage="Obrigatório"/>
 		</div>
-		<h:commandButton id="loginSubmit" action="#{credValidation.doLogin}" value="Submit"></h:commandButton>
+		<h:commandButton styleClass="submitButton" id="loginSubmit" action="#{credValidation.doLogin}" value="Submit"/>
+		<h:commandButton styleClass="registerButton" id="registerSubmit" action="#{credValidation.newUser}" value="Register"/>
 	</h:form>
-	<h:outputLabel value="#{credValidation.result}" rendered=""/>
+	<h:outputLabel id="loginMessage" value="#{credValidation.result}" rendered="#{credValidation.errorMsg}"/>
 </div>
 </h:body>
 </html>
