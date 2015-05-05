@@ -13,9 +13,18 @@ import javax.inject.Named;
 @SessionScoped
 public class LoggedUser implements Serializable {
 	
+	public static final String AUTH_KEY = "username";
+	
 	private static final long serialVersionUID = 1L;
 	
 	private String username;
+	private boolean logged = false;
+	public boolean isLogged() {
+		return logged;
+	}
+	public void setLogged(boolean logged) {
+		this.logged = logged;
+	}
 	public String getUsername() {
 		return username;
 	}

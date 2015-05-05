@@ -4,15 +4,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.EmptyStackException;
-import java.util.regex.Pattern;
-
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.ServletException;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
@@ -35,9 +30,6 @@ public class Calculator implements Serializable {
 	private boolean percentageValid = false;
 
 	private int brackets = 0;
-	
-	@Inject
-	private credValidation login;
 
 
 

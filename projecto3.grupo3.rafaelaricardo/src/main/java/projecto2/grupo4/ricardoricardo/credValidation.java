@@ -18,7 +18,7 @@ public class credValidation implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private RegisteredUsers users; // Lista de utilizadores
+	private RegisteredUsers users; // Lista de utilizadores registados
 
 	@Inject
 	private LoggedUser loggedUser; // Utilizador corrente
@@ -27,6 +27,9 @@ public class credValidation implements Serializable {
 	private String password; // String para validação de login
 	private String result = "";
 	private boolean errorMsg = false;
+	
+	@ManagedProperty("#{loggedUser}")
+	FacesContext faces;
 
 	public String getUsername() {
 		return username;
@@ -44,6 +47,7 @@ public class credValidation implements Serializable {
 		this.password = password;
 	}
 
+	@SuppressWarnings("static-access")
 	public String doLogin() {
 		if (users.getUsers().containsKey(username)) {
 			if (password.equals(users.getUsers().get(username))) {
@@ -53,8 +57,10 @@ public class credValidation implements Serializable {
 				} else {
 					errorMsg = false;
 					loggedUser.setUsername(username);
+					loggedUser.setLogged(true);
+					faces.getCurrentInstance().getExternalContext().getSessionMap().put(LoggedUser.AUTH_KEY, username);
 					users.getLoggedUsers().add(username);
-					result = "calc1.xhtml?faces-redirect=true";
+					result = "/Authorized/calc1.xhtml?faces-redirect=true";
 					username = "";
 					password = "";
 				}
@@ -68,11 +74,10 @@ public class credValidation implements Serializable {
 		}
 		return result;
 	}
-
-	@ManagedProperty("#{loggedUser}")
-	FacesContext faces;
 	
+	@SuppressWarnings("static-access")
 	public String doLogout() {
+		faces.getCurrentInstance().getExternalContext().getSessionMap().remove(LoggedUser.AUTH_KEY);
 		faces.getCurrentInstance().getExternalContext().invalidateSession();
 		users.getLoggedUsers().remove(loggedUser.getUsername());
 		return "/login.xhtml?faces-redirect=true";
