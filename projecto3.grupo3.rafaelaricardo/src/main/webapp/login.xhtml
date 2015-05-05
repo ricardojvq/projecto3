@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="calcStyle.css" />
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300'
+		rel='stylesheet' type='text/css' />
+</h:head>
+
+<h:body>
+	<h:form>
+		<h:outputText value="Username" />
+		<p:inputText value="#{credValidation.username}"></p:inputText>
+		<h:outputText value="Password" />
+		<p:password value="#{credValidation.password}" />
+		<h:commandButton action="#{credValidation.doLogin}" value="Submit"></h:commandButton>
+	</h:form>
+	<h:outputLabel value="#{credValidation.result}" />
+
+</h:body>
+</html>

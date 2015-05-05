@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<body>
+	<ui:composition>
+		<div id="opcao">
+			<ul>
+				<li id="linkE"><a href="calc1.xhtml">Normal</a></li>
+				<li id="linkD"><a href="calc2.xhtml">Científica</a></li>
+			</ul>
+			<div id="opcaoBox"></div>
+		</div><script>
+		
+			$('#linkE').hover(
+					function() {
+						$('#opcaoBox')
+						.transition({x:-200,opacity: 100},100,'linear');
+						});
+		
+		</script>
+		<script>
+
+			$('#linkD').hover(
+					function() {
+						$('#opcaoBox')
+						.transition({x:200,opacity: 100},100,'linear');
+						});
+		
+		</script>
+	</ui:composition>
+</body>
+</html>
