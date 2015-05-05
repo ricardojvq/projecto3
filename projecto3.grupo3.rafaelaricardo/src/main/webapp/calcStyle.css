@@ -438,4 +438,11 @@ div.even {
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10%;
+	font-family: helvetica;
+	font-size: 30px;
+}
+
+#uname {
+	display: inline-block;
+	margin: 	
 }  

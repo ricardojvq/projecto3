@@ -16,15 +16,15 @@
 	<h:form>
 	<div id ="uname">
 		<h:outputText value="Username" />
-		<p:inputText value="#{login.username}"></p:inputText>
+		<p:inputText value="#{credValidation.username}"></p:inputText>
 		</div>
 		<div id="pword">
 		<h:outputText value="Password" />
-		<p:password value="#{login.password}" />
+		<p:password value="#{credValidation.password}" />
 		</div>
-		<h:commandButton id="loginSubmit" action="#{login.doLogin}" value="Submit"></h:commandButton>
+		<h:commandButton id="loginSubmit" action="#{credValidation.doLogin}" value="Submit"></h:commandButton>
 	</h:form>
-	<h:outputLabel value="#{login.result}" rendered=""/>
+	<h:outputLabel value="#{credValidation.result}" rendered=""/>
 </div>
 </h:body>
 </html>
