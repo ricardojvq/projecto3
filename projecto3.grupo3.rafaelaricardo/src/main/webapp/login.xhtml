@@ -12,14 +12,19 @@
 </h:head>
 
 <h:body>
+<div id="loginPage">
 	<h:form>
+	<div id ="uname">
 		<h:outputText value="Username" />
-		<p:inputText value="#{credValidation.username}"></p:inputText>
+		<p:inputText value="#{login.username}"></p:inputText>
+		</div>
+		<div id="pword">
 		<h:outputText value="Password" />
-		<p:password value="#{credValidation.password}" />
-		<h:commandButton action="#{credValidation.doLogin}" value="Submit"></h:commandButton>
+		<p:password value="#{login.password}" />
+		</div>
+		<h:commandButton id="loginSubmit" action="#{login.doLogin}" value="Submit"></h:commandButton>
 	</h:form>
-	<h:outputLabel value="#{credValidation.result}" />
-
+	<h:outputLabel value="#{login.result}" rendered=""/>
+</div>
 </h:body>
 </html>

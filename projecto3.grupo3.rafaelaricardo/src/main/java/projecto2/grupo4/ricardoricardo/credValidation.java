@@ -24,6 +24,7 @@ public class credValidation implements Serializable {
 	public credValidation() {
 		users = new ConcurrentHashMap<String, String>();
 		users.put("ricardo", "123");
+		users.put("rafaela", "456");
 	}
 
 	public ConcurrentHashMap<String, String> getUsers() {
