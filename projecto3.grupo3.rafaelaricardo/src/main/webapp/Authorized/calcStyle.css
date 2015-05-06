@@ -53,11 +53,12 @@ body {
 }
 
 #opcaoBox {
+	margin-top: 10px;
 	margin-left: auto;
 	margin-right: auto;
 	height: 5px;
-	width: 100px;
-	background-color: cornflowerblue;
+	width: 75px;
+	background-color: silver;
 	border-radius: 20px;
 	box-shadow: 0px 2px 2px rgba(0,0,0,0.5);
 	
@@ -85,6 +86,7 @@ body {
     margin: 40px auto 0 auto;
     background-color: cornflowerblue;
     padding-top: 25px;
+    padding-bottom: 25px;
 }
 
 #calcSy {
@@ -115,7 +117,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 90%;
-    padding-top: 25px;
+    padding-top: 5px;
     padding-bottom: 25px;
 }
 
@@ -565,4 +567,145 @@ div.even {
 
 .ui-clock {
 }
+
+.normalCalcButton {
+	-webkit-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	-moz-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	border-bottom-color:#333;
+	border:1px solid #61c4ea;
+	background-color:cornflowerblue;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	color:#282828;
+	font-family:'Verdana',Arial,sans-serif;
+	font-size:30px;
+	text-shadow:silver 0 1px 0;
+	padding:5px
+}
+
+.syCalcButton {
+	-webkit-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	-moz-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
+	border-bottom-color:#333;
+	border:1px solid #61c4ea;
+	background-color:firebrick;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	color:#fff;
+	font-family:'Verdana',Arial,sans-serif;
+	font-size:30px;
+	text-shadow:#282828 0 1px 0;
+	padding:5px
+}
+
+.divHist {
+	width:100%;
+	margin-left: 0px;
+	margin-right: 0px;
+	text-align: center;
+	overflow: auto;
+}
+
+.divHist table {
+	width: 100%;
+	text-align:center;
+}
+
+.divStat {
+	width: 100%;
+	margin-left: 0px;
+	margin-right: 0px;
+	text-align: center;
+	overflow: auto;
+}
+
+.divStat table {
+	width: 100%;
+	text-align:center;
+}
+
+#bottomForm:histShowBt {
+	width: 30%;
+}
+
+#bottomForm:statShowBt {
+	width: 30%;
+}
+
+.otherButtons {
+	text-align: center;
+    width: 40%;
+    margin: 40px auto 0 auto;
+    padding-top: 25px;
+}
+
+.otherButtons input {
+	margin: 10px;
+	border: 0px;
+	text-align:center;
+	width: 30%;
+	display: inline-block;
+} 
+
+.showHistButton {
+   background-color: rgba(110,158,255,1);
+   width: 189px;
+   height: 56px;
+   font-size: 16px;
+   font-family: helvetica;
+   line-height: 54px;
+   text-align: center;
+   color: rgba(232,232,232,1);
+   text-transform: uppercase;
+   text-shadow: 0px 0px 0px rgba(0,0,0,1)
+}
+.showHistButton:hover {
+   -webkit-transform: scale(1.05);
+      -moz-transform: scale(1.05);
+           transform: scale(1.05);
+   color: rgba(255,255,255,1);
+   text-shadow: 0px 1px 3px rgba(0,0,0,1)
+}
+
+.showStatButton {
+   background-color: rgba(55,176,83,1);
+   width: 189px;
+   height: 56px;
+   font-size: 16px;
+   font-family: helvetica;
+   line-height: 54px;
+   text-align: center;
+   color: rgba(214,214,214,1);
+   text-transform: uppercase;
+   text-shadow: 0px 0px 0px rgba(0,0,0,1)
+}
+.showStatButton:hover {
+   -webkit-transform: scale(1.05);
+      -moz-transform: scale(1.05);
+           transform: scale(1.05);
+   color: rgba(255,255,255,1);
+   text-shadow: 0px 1px 3px rgba(0,0,0,1)
+}
+
+.reuseButton {
+	-webkit-box-shadow:rgba(0,0,0,0.98) 0 1px 0 0;
+	-moz-box-shadow:rgba(0,0,0,0.98) 0 1px 0 0;
+	box-shadow:rgba(0,0,0,0.98) 0 1px 0 0;
+	background-color:#EEE;
+	border-radius:0;
+	-webkit-border-radius:0;
+	-moz-border-radius:0;
+	border:1px solid #999;
+	color:#666;
+	font-family:'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif;
+	font-size:11px;
+	font-weight:700;
+	padding:2px 6px;
+	height:28px
+}
+
 

@@ -21,79 +21,183 @@
 						<p:clock />
 					</div>
 					<div id="logoutButton">
-						<h:commandButton action="#{credValidation.doLogout()}" value="Logout" />
+						<h:commandButton action="#{credValidation.doLogout()}"
+							value="Logout" />
 					</div>
 				</div>
 			</h:form>
-			<div id="calcSimples">
-				<div id="screen">
-					<h:outputText id="ecra" styleClass="screen"
-						value="#{calculator.expression}" />
-				</div>
-				<div id="teclado">
-					<h:form id="formCalc">
-						<div class="linha odd">
-							<h:commandButton styleClass="myButton" id="AC" action="calc1"
-								value="AC" actionListener="#{calculator.key}" />
-							<h:commandButton styleClass="myButton" id="moreLess"
-								action="calc1" value="+/-" actionListener="#{calculator.key}" />
-							<h:commandButton styleClass="myButton" id="percent"
-								action="calc1" value="%" actionListener="#{calculator.key}" />
-							<h:commandButton onmouseover="divide()" styleClass="myButton"
-								id="divide" action="calc1" value="/"
-								actionListener="#{calculator.key}" />
-						</div>
-						<div class="linha even">
-							<h:commandButton styleClass="myButtonNum" id="seven"
-								action="calc1" value="7" actionListener="#{calculator.key}" />
-							<h:commandButton styleClass="myButtonNum" id="eight"
-								action="calc1" value="8" actionListener="#{calculator.key}" />
-							<h:commandButton styleClass="myButtonNum" id="nine"
-								action="calc1" value="9" actionListener="#{calculator.key}" />
-							<h:commandButton onmouseover="multiply()" styleClass="myButton"
-								id="multiply" action="calc1" value="x"
-								actionListener="#{calculator.key}" />
-						</div>
-						<div class="linha odd">
-							<h:commandButton styleClass="myButtonNum" id="four"
-								action="calc1" value="4" actionListener="#{calculator.key}" />
-							<h:commandButton styleClass="myButtonNum" id="five"
-								action="calc1" value="5" actionListener="#{calculator.key}" />
-							<h:commandButton styleClass="myButtonNum" id="six" action="calc1"
-								value="6" actionListener="#{calculator.key}" />
-							<h:commandButton onmouseover="plus()" styleClass="myButton"
-								id="plus" action="calc1" value="+"
-								actionListener="#{calculator.key}" />
-						</div>
-						<div class="linha even">
-							<h:commandButton styleClass="myButtonNum" id="one" action="calc1"
-								value="1" actionListener="#{calculator.key}" />
-							<h:commandButton styleClass="myButtonNum" id="two" action="calc1"
-								value="2" actionListener="#{calculator.key}" />
-							<h:commandButton styleClass="myButtonNum" id="three"
-								action="calc1" value="3" actionListener="#{calculator.key}" />
-							<h:commandButton styleClass="myButton" id="minus" action="calc1"
-								value="-" actionListener="#{calculator.key}" />
-						</div>
-						<div class="linha odd">
-							<h:commandButton styleClass="myButtonNum" id="zero"
-								action="calc1" value="0" actionListener="#{calculator.key}" />
-							<h:commandButton styleClass="myButton" id="del" action="calc1"
-								value="←" actionListener="#{calculator.key}" />
-							<h:commandButton styleClass="myButton" id="dot" action="calc1"
-								value="." actionListener="#{calculator.key}" />
-							<h:commandButton onmouseover="teste()" styleClass="myButton"
-								id="equal" action="calc1" value="="
-								actionListener="#{calculator.key}" />
-						</div>
-					</h:form>
-				</div>
-			</div>
 
+			<f:ajax render="ecra histDiv statDiv">
+				<h:form id="formCalc">
+					<div id="calcSimples">
+						<div id="screen">
+							<h:outputText id="ecra" styleClass="screen"
+								value="#{calculator.expression}" />
+						</div>
+						<div id="teclado">
+							<div class="linha odd">
+								<h:commandButton styleClass="myButton" id="AC" action="calc1"
+									value="AC" actionListener="#{calculator.key}" />
+								<h:commandButton styleClass="myButton" id="moreLess"
+									action="calc1" value="+/-" actionListener="#{calculator.key}" />
+								<h:commandButton styleClass="myButton" id="percent"
+									action="calc1" value="%" actionListener="#{calculator.key}" />
+								<h:commandButton onmouseover="divide()" styleClass="myButton"
+									id="divide" action="calc1" value="/"
+									actionListener="#{calculator.key}" />
+							</div>
+							<div class="linha even">
+								<h:commandButton styleClass="myButtonNum" id="seven"
+									action="calc1" value="7" actionListener="#{calculator.key}" />
+								<h:commandButton styleClass="myButtonNum" id="eight"
+									action="calc1" value="8" actionListener="#{calculator.key}" />
+								<h:commandButton styleClass="myButtonNum" id="nine"
+									action="calc1" value="9" actionListener="#{calculator.key}" />
+								<h:commandButton onmouseover="multiply()" styleClass="myButton"
+									id="multiply" action="calc1" value="x"
+									actionListener="#{calculator.key}" />
+							</div>
+							<div class="linha odd">
+								<h:commandButton styleClass="myButtonNum" id="four"
+									action="calc1" value="4" actionListener="#{calculator.key}" />
+								<h:commandButton styleClass="myButtonNum" id="five"
+									action="calc1" value="5" actionListener="#{calculator.key}" />
+								<h:commandButton styleClass="myButtonNum" id="six"
+									action="calc1" value="6" actionListener="#{calculator.key}" />
+								<h:commandButton onmouseover="plus()" styleClass="myButton"
+									id="plus" action="calc1" value="+"
+									actionListener="#{calculator.key}" />
+							</div>
+							<div class="linha even">
+								<h:commandButton styleClass="myButtonNum" id="one"
+									action="calc1" value="1" actionListener="#{calculator.key}" />
+								<h:commandButton styleClass="myButtonNum" id="two"
+									action="calc1" value="2" actionListener="#{calculator.key}" />
+								<h:commandButton styleClass="myButtonNum" id="three"
+									action="calc1" value="3" actionListener="#{calculator.key}" />
+								<h:commandButton styleClass="myButton" id="minus" action="calc1"
+									value="-" actionListener="#{calculator.key}" />
+							</div>
+							<div class="linha odd">
+								<h:commandButton styleClass="myButtonNum" id="zero"
+									action="calc1" value="0" actionListener="#{calculator.key}" />
+								<h:commandButton styleClass="myButton" id="del" action="calc1"
+									value="←" actionListener="#{calculator.key}" />
+								<h:commandButton styleClass="myButton" id="dot" action="calc1"
+									value="." actionListener="#{calculator.key}" />
+								<h:commandButton onmouseover="teste();fact();realNumberFact();"
+									styleClass="myButton" id="equal" action="calc1" value="="
+									actionListener="#{calculator.key}" />
+								<!-- IGUAL -->
+							</div>
+							<h:panelGroup layout="block" id="syCalculator"
+								rendered="#{calculator.syCalcShow}">
+								<div class="linha even">
+									<h:commandButton styleClass="myButtonSy" id="sen"
+										action="calc1" value="sen" actionListener="#{calculator.key}" />
+									<h:commandButton styleClass="myButtonSy" id="cos"
+										action="calc1" value="cos" actionListener="#{calculator.key}" />
+									<h:commandButton styleClass="myButtonSy" id="tan"
+										action="calc1" value="tan" actionListener="#{calculator.key}" />
+									<h:commandButton styleClass="myButtonSy" id="asen"
+										action="calc1" value="asen" actionListener="#{calculator.key}" />
+								</div>
+								<div class="linha odd">
+									<h:commandButton styleClass="myButtonSy" id="acos"
+										action="calc1" value="acos" actionListener="#{calculator.key}" />
+									<h:commandButton styleClass="myButtonSy" id="atan"
+										action="calc1" value="atan" actionListener="#{calculator.key}" />
+									<h:commandButton styleClass="myButtonSy" id="ln" action="calc1"
+										value="ln" actionListener="#{calculator.key}" />
+									<h:commandButton styleClass="myButtonSy" id="log"
+										action="calc1" value="log" actionListener="#{calculator.key}" />
+								</div>
+								<div class="linha even">
+									<h:commandButton onmouseover="validF()" styleClass="myButtonSy"
+										id="factor" action="calc1" value="x!"
+										actionListener="#{calculator.key}" />
+									<h:commandButton styleClass="myButtonSy" id="pot2"
+										action="calc1" value="x^2" actionListener="#{calculator.key}" />
+									<h:commandButton styleClass="myButtonSy" id="raiz2"
+										action="calc1" value="√" actionListener="#{calculator.key}" />
+									<h:commandButton styleClass="myButtonSy" id="euler"
+										action="calc1" value="e" actionListener="#{calculator.key}" />
+								</div>
+								<div class="linha odd">
+									<h:commandButton styleClass="myButtonSy" id="openP"
+										action="calc1" value="(" actionListener="#{calculator.key}" />
+									<h:commandButton onmouseover="bracket()"
+										styleClass="myButtonSy" id="closeP" action="calc1" value=")"
+										actionListener="#{calculator.key}" />
+									<h:commandButton styleClass="myButtonSy" id="modulo"
+										action="calc1" value="|x|" actionListener="#{calculator.key}" />
+									<h:commandButton styleClass="myButtonSy" id="pi" action="calc1"
+										value="π" actionListener="#{calculator.key}" />
+								</div>
+							</h:panelGroup>
+						</div>
 
-			<script>
-			$('#opcaoBox').css({x:-210});
-		</script>
+					</div>
+					<h:panelGrid layout="block" id="bottomForm"
+						styleClass="otherButtons">
+						<h:commandButton id="histShowBt" styleClass="showHistButton"
+							action="#{calculator.toggleHist()}" value="Histórico">
+							<f:ajax render="histDiv" />
+						</h:commandButton>
+						<h:commandButton id="statShowBt" styleClass="showStatButton"
+							action="#{calculator.toggleStat()}" value="Estatísticas">
+							<f:ajax render="statDiv" />
+						</h:commandButton>
+						<h:panelGrid styleClass="divHist" id="histDiv">
+							<h:panelGrid styleClass="sHistory" id="showHistory"
+								rendered="#{calculator.histDiv}">
+								<h:dataTable id="abc" value="#{calculator.calcHistory}"
+									var="item" styleClass="histTable"
+									headerClass="histTable-header"
+									rowClasses="histTable-oddRow,histTable-evenRow">
+									<h:column>
+										<f:facet name="header">Expressão</f:facet>
+				#{item}
+				</h:column>
+									<h:column>
+										<f:facet name="header">Reutilizar</f:facet>
+										<h:commandButton styleClass="reuseButton"
+											actionListener="#{calculator.reuse}" value="OK">
+											<f:attribute name="reut" value="#{item}" />
+										</h:commandButton>
+									</h:column>
+								</h:dataTable>
+							</h:panelGrid>
+						</h:panelGrid>
+						<h:panelGrid styleClass="divStat" id="statDiv">
+
+							<h:panelGrid styleClass="sStat" id="showStat"
+								rendered="#{calculator.statDiv}">
+								<h:dataTable value="#{calculator.calcStatistics}" var="operator"
+									styleClass="statsTable" headerClass="statsTable-header"
+									rowClasses="statsTable-oddRow,statsTable-evenRow">
+									<h:column>
+										<f:facet name="header">Operador</f:facet>
+			#{operator.name}		
+		</h:column>
+
+									<h:column>
+										<f:facet name="header">Número de vezes usado</f:facet>
+			#{operator.number}		
+		</h:column>
+
+									<h:column>
+										<f:facet name="header">Percentagem</f:facet>
+			#{operator.percentage}%		
+		</h:column>
+
+								</h:dataTable>
+							</h:panelGrid>
+						</h:panelGrid>
+					</h:panelGrid>
+
+				</h:form>
+			</f:ajax>
 		</ui:define>
 	</ui:composition>
 </body>

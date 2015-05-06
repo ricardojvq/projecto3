@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
+
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
@@ -30,8 +31,52 @@ public class Calculator implements Serializable {
 	private boolean percentageValid = false;
 
 	private int brackets = 0;
+	
+	private boolean syCalcShow = false;
+	private boolean histDiv = false;
+	private boolean statDiv = false;
 
 
+
+	public boolean isHistDiv() {
+		return histDiv;
+	}
+
+	public void toggleHist() {
+		if (this.histDiv == false) {
+			this.histDiv = true;
+		} else {
+			this.histDiv = false;
+		}
+	}
+
+	public boolean isStatDiv() {
+		return statDiv;
+	}
+
+	public void toggleStat() {
+		if (this.statDiv == false) {
+			this.statDiv = true;
+		} else {
+			this.statDiv = false;
+		}
+	}
+
+	public boolean isSyCalcShow() {
+		return syCalcShow;
+	}
+
+	public void setSyCalcShow(boolean syCalcShow) {
+		this.syCalcShow = syCalcShow;
+	}
+	
+	public void showSyCalc() {
+		this.syCalcShow = true;
+	}
+	
+	public void hideSyCalc() {
+		this.syCalcShow = false;
+	}
 
 	public Calculator() {
 		operators = new ArrayList<String>();

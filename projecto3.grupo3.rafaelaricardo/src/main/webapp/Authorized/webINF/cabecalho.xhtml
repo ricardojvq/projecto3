@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 <body>
 	<ui:composition>
 		<div id="opcao">
-			<ul>
-				<li id="linkE"><a href="calc1.xhtml">Normal</a></li>
-				<li id="linkD"><a href="calc2.xhtml">Científica</a></li>
-			</ul>
+			<h:form id="cabForm">
+				<ul>
+					<li id="linkE"><h:commandButton id="normal"
+							styleClass="normalCalcButton" action="#{calculator.hideSyCalc()}"
+							value="Normal">
+							<f:ajax render="ecra formCalc" />
+						</h:commandButton></li>
+					<li id="linkD"><h:commandButton id="sy"
+							styleClass="syCalcButton" action="#{calculator.showSyCalc()}"
+							value="Científica">
+							<f:ajax render="ecra formCalc" />
+						</h:commandButton></li>
+				</ul>
+			</h:form>
 			<div id="opcaoBox"></div>
-		</div><script>
+		</div>
+		<script>
 		
 			$('#linkE').hover(
 					function() {
 						$('#opcaoBox')
-						.transition({x:-200,opacity: 100},100,'linear');
+						.transition({x:-210,opacity: 100},100,'linear')
+						.css({x:-210});
 						});
 		
 		</script>
@@ -26,7 +38,8 @@
 			$('#linkD').hover(
 					function() {
 						$('#opcaoBox')
-						.transition({x:200,opacity: 100},100,'linear');
+						.transition({x:200,opacity: 100},100,'linear')
+						.css({x:200});
 						});
 		
 		</script>

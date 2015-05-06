@@ -7,50 +7,6 @@
 <body>
 	<ui:composition>
 		<div id="footr">
-			<button class="nav-toggle historyButton" href="#historyCollapse">Mostrar
-				Histórico</button>
-			<div id="historyCollapse" style="display: none">
-				<h:dataTable value="#{calculator.calcHistory}" var="item"
-					styleClass="histTable" headerClass="histTable-header"
-					rowClasses="histTable-oddRow,histTable-evenRow">
-					<h:column>
-						<f:facet name="header">Expressão</f:facet>
-				#{item}
-				</h:column>
-					<h:column>
-						<f:facet name="header">Reutilizar</f:facet>
-						<h:form>
-							<h:commandButton actionListener="#{calculator.reuse}" value="OK">
-								<f:attribute name="reut" value="#{item}"/>
-							</h:commandButton>
-						</h:form>
-					</h:column>
-				</h:dataTable>
-			</div>
-			<button class="statButton nav-toggle2" href="#statisticsCollapse">Mostrar
-				Estatística</button>
-			<div id="statisticsCollapse" style="display: none">
-
-				<h:dataTable value="#{calculator.calcStatistics}" var="operator"
-					styleClass="statsTable" headerClass="statsTable-header"
-					rowClasses="statsTable-oddRow,statsTable-evenRow">
-					<h:column>
-						<f:facet name="header">Operador</f:facet>
-			#{operator.name}		
-		</h:column>
-
-					<h:column>
-						<f:facet name="header">Número de vezes usado</f:facet>
-			#{operator.number}		
-		</h:column>
-
-					<h:column>
-						<f:facet name="header">Percentagem</f:facet>
-			#{operator.percentage}%		
-		</h:column>
-
-				</h:dataTable>
-			</div>
 		</div>
 	</ui:composition>
 </body>
