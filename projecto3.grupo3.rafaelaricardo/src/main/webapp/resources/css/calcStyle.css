@@ -566,6 +566,7 @@ div.even {
 	padding: 6px 24px;
 	text-decoration: none;
 	text-shadow: 0px 1px 0px #2f6627;
+	margin-right: 0px;
 }
 
 .registerButton:hover {
@@ -766,4 +767,47 @@ div.even {
 	font-weight: 700;
 	padding: 2px 6px;
 	height: 28px
+}
+
+div#formCalc:bottomForm {
+	margin-top: 0px;
+}
+
+.otherButtons {
+	margin-top: 0px;
+}
+
+#topForm {
+	padding-top: 5px;
+	text-align:center;
+}
+
+div.a {
+	width: 33%;
+	display:inline-block;
+}
+div.b {
+	width: 33%;
+	display:inline-block;
+}
+div.c {
+	width: 33%;
+	display:inline-block;
+}
+
+#botoes {
+	margin-right: 0px;
+	width:100%;
+	padding-top: 20px;
+	float: right;
+	text-align: right;
+}
+
+#botoes input {
+	margin-right: 0px;
+	margin-left: 10px;
+}
+
+.ui-widget-content {
+	border: 0px;
 }

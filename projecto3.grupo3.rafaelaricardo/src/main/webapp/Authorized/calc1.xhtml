@@ -18,21 +18,19 @@
 	<ui:composition template="/Authorized/webINF/layout.xhtml">
 		<ui:define name="conteudo">
 			<div id="topbar">
-				<h:form>
-					<div class="row" style="border: 1px solid;">
-						<div class="col-sm-4">
+				<h:form id="topForm" prependId="false">
+						<div class="a">
 							<div id="welcomeMsg">Bem-vindo #{loggedUser.username}</div>
 						</div>
-						<div class="col-sm-4">
+						<div class="b">
 							<p:clock />
 						</div>
-						<div class="col-sm-4">
+						<div class="c">
 							<div id="logoutButton">
 								<h:commandButton action="#{credValidation.doLogout()}"
 									value="Logout" />
 							</div>
 						</div>
-					</div>
 				</h:form>
 			</div>
 

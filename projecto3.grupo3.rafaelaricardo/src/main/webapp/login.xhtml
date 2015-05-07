@@ -3,7 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"> 
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta charset="UTF-8" />
 	<h:outputStylesheet library="css" name="calcStyle.css" />
@@ -20,7 +20,7 @@
 <h:body>
 	<div id="loginPage">
 		<div class="row">
-			<h:form>
+			<h:form prependId="false">
 				<div class="col-sm-4" />
 				<div class="col-sm-4">
 					<p:panelGrid id="panelGrid" columns="2" layout="grid">
@@ -32,15 +32,16 @@
 						<h:outputText value="Password" />
 						<p:password value="#{credValidation.password}" required="true"
 							requiredMessage="Obrigatório" />
-
-						<h:commandButton styleClass="submitButton" id="loginSubmit"
-							action="#{credValidation.doLogin}" value="Submit" />
-						<h:commandButton styleClass="registerButton" id="registerSubmit"
-							action="#{credValidation.newUser}" value="Register" />
-
+							</p:panelGrid>
+							<h:panelGroup id="botoes">
+							<h:commandButton styleClass="submitButton" id="loginSubmit"
+								action="#{credValidation.doLogin}" value="Submit" />
+							<h:commandButton styleClass="registerButton" id="registerSubmit"
+								action="#{credValidation.newUser}" value="Register" />
 						<h:outputLabel id="loginMessage" value="#{credValidation.result}"
 							rendered="#{credValidation.errorMsg}" />
-					</p:panelGrid>
+							</h:panelGroup>
+					
 				</div>
 				<div class="col-sm-4" />
 			</h:form>
