@@ -37,7 +37,7 @@
 			</div>
 
 
-			<f:ajax render="ecra histDiv statDiv">
+			<f:ajax render="ecra @form histDiv statDiv">
 				<h:form id="formCalc">
 					<div id="calcSimples">
 						<div id="screen">
@@ -148,37 +148,41 @@
 						</div>
 
 					</div>
-					<h:panelGrid layout="block" id="bottomForm"
+					<h:panelGroup layout="block" id="bottomForm"
 						styleClass="otherButtons">
 						<h:commandButton id="histShowBt" styleClass="showHistButton"
 							action="#{calculator.toggleHist()}" value="Histórico">
-							<f:ajax render="histDiv" />
+
 						</h:commandButton>
 						<h:commandButton id="statShowBt" styleClass="showStatButton"
 							action="#{calculator.toggleStat()}" value="Estatísticas">
-							<f:ajax render="statDiv" />
+
 						</h:commandButton>
-						<h:panelGrid styleClass="divHist" id="histDiv">
-							<h:panelGrid styleClass="sHistory" id="showHistory"
+						<h:form>
+						<h:panelGroup styleClass="divHist" id="histDiv">
+							<h:dataTable value="#{calculator.histAndTime}"
+								var="item" styleClass="histTable" headerClass="histTable-header"
+								rowClasses="histTable-oddRow,histTable-evenRow"
 								rendered="#{calculator.histDiv}">
-								<h:dataTable id="abc" value="#{calculator.calcHistory}"
-									var="item" styleClass="histTable"
-									headerClass="histTable-header"
-									rowClasses="histTable-oddRow,histTable-evenRow">
-									<h:column>
-										<f:facet name="header">Expressão</f:facet>
-				#{item}
+								<h:column>
+									<f:facet name="header">Expressão</f:facet>
+				#{item.hist}
 				</h:column>
-									<h:column>
-										<f:facet name="header">Reutilizar</f:facet>
-										<h:commandButton styleClass="reuseButton"
-											actionListener="#{calculator.reuse}" value="OK">
-											<f:attribute name="reut" value="#{item}" />
-										</h:commandButton>
-									</h:column>
-								</h:dataTable>
-							</h:panelGrid>
-						</h:panelGrid>
+				<h:column>
+									<f:facet name="header">Tempo</f:facet>
+				#{item.time}
+				</h:column>
+								<h:column>
+									<f:facet name="header">Reutilizar</f:facet>
+									<h:commandButton styleClass="reuseButton"
+										actionListener="#{calculator.reuse}" value="OK">
+										<f:ajax render="@form"/>
+										<f:attribute name="reut" value="#{item.hist}" />
+									</h:commandButton>
+								</h:column>
+							</h:dataTable>
+						</h:panelGroup>
+						</h:form>
 						<h:panelGrid styleClass="divStat" id="statDiv">
 
 							<h:panelGrid styleClass="sStat" id="showStat"
@@ -204,7 +208,7 @@
 								</h:dataTable>
 							</h:panelGrid>
 						</h:panelGrid>
-					</h:panelGrid>
+					</h:panelGroup>
 
 				</h:form>
 			</f:ajax>

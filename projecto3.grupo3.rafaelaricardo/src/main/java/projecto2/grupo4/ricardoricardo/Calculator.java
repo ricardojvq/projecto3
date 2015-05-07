@@ -3,8 +3,10 @@ package projecto2.grupo4.ricardoricardo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import javax.annotation.processing.RoundEnvironment;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
@@ -35,6 +37,11 @@ public class Calculator implements Serializable {
 	private boolean syCalcShow = false;
 	private boolean histDiv = false;
 	private boolean statDiv = false;
+	
+	private long startTime;
+	private long endTime;
+	
+	private ArrayList<HistTime> histAndTime = new ArrayList<HistTime>();
 
 
 
@@ -100,11 +107,14 @@ public class Calculator implements Serializable {
 			negative();
 			break;
 		} case "percent": {
+			startTime = System.nanoTime();
 			this.expression += "%";
 			String exprTemp = this.expression;
 			getPercentage();
 			if (percentageValid) { 
 				op = "%";
+				endTime = System.nanoTime();
+				histAndTime.add(new HistTime(exprTemp, this.totalTime()));
 				calcHistory.addToHistory(exprTemp);
 			}
 			break;
@@ -342,6 +352,7 @@ public class Calculator implements Serializable {
 	}
 
 	public void getResult() {
+		startTime = System.nanoTime();
 		if (expression.contains("!")) {
 			getFactorial();
 		}
@@ -362,6 +373,8 @@ public class Calculator implements Serializable {
 				double result = e.evaluate();
 				BigDecimal bigResult = BigDecimal.valueOf(result);
 				expression = bigResult.toString();
+				endTime = System.nanoTime();
+				histAndTime.add(new HistTime(expr, this.totalTime()));
 				calcHistory.addToHistory(expr);
 				calcStatistics.addStatistics(operators);
 			} catch (ArithmeticException ae) {
@@ -377,6 +390,12 @@ public class Calculator implements Serializable {
 			brackets=0;
 		}
 
+	}
+	
+	
+
+	public ArrayList<HistTime> getHistAndTime() {
+		return histAndTime;
 	}
 
 	public ArrayList<String> getCalcHistory() {
@@ -397,6 +416,13 @@ public class Calculator implements Serializable {
 
 	public void reuse(ActionEvent ae) {
 		expression = (String)ae.getComponent().getAttributes().get("reut");
+	}
+	
+	public String totalTime() {
+		long dif = endTime - startTime;
+		double ms = (double)(dif/1000000.0);
+		String f = String.format("%.2f",ms);
+		return f+" ms";
 	}
 
 
