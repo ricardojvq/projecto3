@@ -6,26 +6,36 @@
 	xmlns:p="http://primefaces.org/ui">
 <head>
 <meta charset="UTF-8" />
-<link rel="stylesheet" href="calcStyle.css" />
+<h:outputStylesheet library="css" name="calcStyle.css" />
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300'
 	rel='stylesheet' type='text/css' />
+
 </head>
 
 <body>
 	<ui:composition template="/Authorized/webINF/layout.xhtml">
 		<ui:define name="conteudo">
-			<h:form>
-				<div id="topbar">
-					<div id="welcomeMsg">
-						Bem-vindo #{loggedUser.username}
-						<p:clock />
+			<div id="topbar">
+				<h:form>
+					<div class="row" style="border: 1px solid;">
+						<div class="col-sm-4">
+							<div id="welcomeMsg">Bem-vindo #{loggedUser.username}</div>
+						</div>
+						<div class="col-sm-4">
+							<p:clock />
+						</div>
+						<div class="col-sm-4">
+							<div id="logoutButton">
+								<h:commandButton action="#{credValidation.doLogout()}"
+									value="Logout" />
+							</div>
+						</div>
 					</div>
-					<div id="logoutButton">
-						<h:commandButton action="#{credValidation.doLogout()}"
-							value="Logout" />
-					</div>
-				</div>
-			</h:form>
+				</h:form>
+			</div>
+
 
 			<f:ajax render="ecra histDiv statDiv">
 				<h:form id="formCalc">

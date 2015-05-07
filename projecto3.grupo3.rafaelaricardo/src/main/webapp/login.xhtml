@@ -3,29 +3,48 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"> 
 <h:head>
 	<meta charset="UTF-8" />
-	<link rel="stylesheet" href="calcStyle.css" />
+	<h:outputStylesheet library="css" name="calcStyle.css" />
+
+	<link rel="stylesheet"
+		href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300'
 		rel='stylesheet' type='text/css' />
+
+
 </h:head>
 
 <h:body>
-<div id="loginPage">
-	<h:form>
-	<div id ="uname">
-		<h:outputText value="Username" />
-		<p:inputText value="#{credValidation.username}" required="true" requiredMessage="Obrigatório"></p:inputText>
+	<div id="loginPage">
+		<div class="row">
+			<h:form>
+				<div class="col-sm-4" />
+				<div class="col-sm-4">
+					<p:panelGrid id="panelGrid" columns="2" layout="grid">
+
+						<h:outputText value="Username" />
+						<p:inputText value="#{credValidation.username}" required="true"
+							requiredMessage="Obrigatório"></p:inputText>
+
+						<h:outputText value="Password" />
+						<p:password value="#{credValidation.password}" required="true"
+							requiredMessage="Obrigatório" />
+
+						<h:commandButton styleClass="submitButton" id="loginSubmit"
+							action="#{credValidation.doLogin}" value="Submit" />
+						<h:commandButton styleClass="registerButton" id="registerSubmit"
+							action="#{credValidation.newUser}" value="Register" />
+
+						<h:outputLabel id="loginMessage" value="#{credValidation.result}"
+							rendered="#{credValidation.errorMsg}" />
+					</p:panelGrid>
+				</div>
+				<div class="col-sm-4" />
+			</h:form>
 		</div>
-		<div id="pword">
-		<h:outputText value="Password" />
-		<p:password value="#{credValidation.password}" required="true" requiredMessage="Obrigatório"/>
-		</div>
-		<h:commandButton styleClass="submitButton" id="loginSubmit" action="#{credValidation.doLogin}" value="Submit"/>
-		<h:commandButton styleClass="registerButton" id="registerSubmit" action="#{credValidation.newUser}" value="Register"/>
-	</h:form>
-	<h:outputLabel id="loginMessage" value="#{credValidation.result}" rendered="#{credValidation.errorMsg}"/>
-</div>
+	</div>
 </h:body>
 </html>
