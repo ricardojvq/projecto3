@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'Calc';
-	src: url("Calculator.ttf");
+	src: url("#{resource['fonts:Calculator.ttf']}");
 	font-weight: normal;
 	font-style: normal;
 }
