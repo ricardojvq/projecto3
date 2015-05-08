@@ -1,10 +1,12 @@
 package projecto3.grupo3.rafaelaricardo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
@@ -13,11 +15,10 @@ public class RegisteredUsers implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private ConcurrentHashMap<String,String> users;
-	private ConcurrentSkipListSet<String> loggedUsers;
+	private ArrayList<String> loggedUsers = new ArrayList<>();
 	
 	public RegisteredUsers() {
 		users = new ConcurrentHashMap<String, String>();
-		loggedUsers = new ConcurrentSkipListSet<String>();
 		users.put("ricardo", "123");
 		users.put("rafaela", "456");
 	}
@@ -30,12 +31,20 @@ public class RegisteredUsers implements Serializable {
 		this.users = users;
 	}
 
-	public ConcurrentSkipListSet<String> getLoggedUsers() {
+	public ArrayList<String> getLoggedUsers() {
 		return loggedUsers;
 	}
 
-	public void setLoggedUsers(ConcurrentSkipListSet<String> loggedUsers) {
+	public void setLoggedUsers(ArrayList<String> loggedUsers) {
 		this.loggedUsers = loggedUsers;
 	}
+	
+	public void addToLogged(String u) {
+		loggedUsers.add(u);
+	}
+	
+	
+	
+	
 
 }
