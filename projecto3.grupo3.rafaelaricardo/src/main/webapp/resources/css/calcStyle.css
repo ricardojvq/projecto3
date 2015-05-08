@@ -501,7 +501,7 @@ div.even {
 }
 
 #loginSubmit {
-	border:1px solid;
+	
 } 
 
 .submitButton {
@@ -521,16 +521,17 @@ div.even {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
-	border: 1px solid #18ab29;;
+	border: 1px solid #18ab29;
 	display: inline-block;
 	cursor: pointer;
 	color: #ffffff;
 	font-family: Arial;
 	font-size: 24px;
-	
 	padding: 6px 24px;
 	text-decoration: none;
 	text-shadow: 0px 1px 0px #2f6627;
+	margin-right: 0px;
+	min-width:125px;
 }
 
 .submitButton:hover {
@@ -578,6 +579,7 @@ div.even {
 	text-decoration: none;
 	text-shadow: 0px 1px 0px #2f6627;
 	margin-right: 0px;
+	min-width:125px;
 }
 
 .registerButton:hover {
