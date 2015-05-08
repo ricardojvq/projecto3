@@ -33,5 +33,7 @@ public class LoggedUser implements Serializable {
 	}
 	
 	
+	
+	
 
 }

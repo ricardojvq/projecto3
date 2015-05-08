@@ -1,6 +1,7 @@
 package projecto2.grupo4.ricardoricardo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -59,7 +60,7 @@ public class credValidation implements Serializable {
 					loggedUser.setUsername(username);
 					loggedUser.setLogged(true);
 					faces.getCurrentInstance().getExternalContext().getSessionMap().put(LoggedUser.AUTH_KEY, username);
-					users.getLoggedUsers().add(username);
+					users.getLoggedUsers().add(loggedUser.getUsername());
 					result = "/Authorized/calc1.xhtml?faces-redirect=true";
 					username = "";
 					password = "";
@@ -111,6 +112,10 @@ public class credValidation implements Serializable {
 				result = "Password inválida";
 			}
 		}
+	}
+	
+	public ArrayList<String> usersOnline() {
+		return users.getLoggedUsers();
 	}
 
 
