@@ -28,10 +28,15 @@ body {
 }
 
 #chat {
-	text-align: right;
-	width: 29%;
+	text-align: center;
+	width: 49%;
 	display: inline-block;
-	vertical-align: middle;
+	vertical-align: super;
+}
+
+#chatFrame {
+	width: 100%;
+	min-height:700px; 
 }
 
 #opcao {
@@ -783,7 +788,7 @@ div.even {
 }
 
 #formCalc {
-	width: 70%;
+	width: 50%;
 	display: inline-block;
 	vertical-align: middle;
 }
@@ -839,24 +844,37 @@ div.c {
 
 #chatTop {
 	width: 100%;
-	height: 700px;
+	min-height: 200px;
 }
 
 #janela {
-	display: inline-block;
-	vertical-align: bottom;
+	vertical-align: text-top;
+	display: inline-table;
 	width: 70%;
-	height: 700px;
+	min-height: 200px;
 	background-color: white;
 	color: black;
 	border: 1px solid rgba(0,0,0,0.5);
 }
 
-#onlineUsers {
-	display: inline-block;
+#msgWindow {
+	height: 100%;
+	display: table-cell;
 	vertical-align: bottom;
+}
+
+#msgWindow p {
+	display: inline;
+	margin-bottom: 0px;
+}
+
+#onlineUsers {
+	vertical-align: inline-bottom;
+	display: inline;
+	padding-left: 10px;
+	padding-top:5px;
 	width: 30%;
-	height: 700px;
+	min-height: 200px;
 	background-color: silver;
 	color: black;
 }
@@ -868,11 +886,19 @@ div.c {
 }
 
 #campoTexto {
-	display: inline-block;
+	display: inline-table;
+	vertical-align: super;
 	width: 60%;
 }
 
 #botaoChat {
-	display: inline-block;
+	display: inline-table;
+	vertical-align: super;
+	width: 10%;
+}
+
+#resetChatButton {
+	display: inline-table;
+	vertical-align: super;
 	width: 10%;
 }
