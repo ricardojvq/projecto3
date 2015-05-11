@@ -21,6 +21,7 @@ public class SomaTest extends TestCase {
 	
 	@Before
 	public void setUp() {
+		
 	}
 
 	@Test

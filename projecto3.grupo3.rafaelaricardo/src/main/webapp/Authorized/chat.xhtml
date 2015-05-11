@@ -34,6 +34,7 @@
 			<h:inputText value="#{msgBean.message}" id="campoTexto" />
 			<h:commandButton id="botaoChat" action="chat" actionListener="#{msgBean.sendMsg}" />
 		</div>
+		<p:poll interval="1" update="onlineUsers janela"/>
 	</h:form>
 <h:body>
 </h:body>
