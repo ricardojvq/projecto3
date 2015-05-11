@@ -16,7 +16,7 @@
 
 
 </h:head>
-	<h:form id="chatForm" prependId="false">
+<h:form id="chatForm" prependId="false">
 	<div id="chatTop">
 		<h:panelGroup id="janela">
 			<ui:repeat var="msg" value="#{chat.messages}">
@@ -24,18 +24,22 @@
 			</ui:repeat>
 		</h:panelGroup>
 		<h:panelGroup id="onlineUsers">
-		<ui:repeat var="online_user" value="#{credValidation.usersOnline()}">
+			<ui:repeat var="online_user" value="#{credValidation.usersOnline()}">
 			#{online_user}
-		<br/>
-		</ui:repeat>
+		<br />
+			</ui:repeat>
 		</h:panelGroup>
-		</div>
-		<div id="mensagem">
-			<h:inputText value="#{msgBean.message}" id="campoTexto" />
-			<h:commandButton id="botaoChat" action="chat" actionListener="#{msgBean.sendMsg}" />
-		</div>
-		<p:poll interval="1" update="onlineUsers janela"/>
-	</h:form>
+	</div>
+	<div id="mensagem">
+		<h:inputText value="#{msgBean.message}" id="campoTexto" />
+		<h:commandButton id="botaoChat" action="chat"
+			actionListener="#{msgBean.sendMsg}" />
+	</div>
+	<p:poll interval="1" update="onlineUsers janela" />
+	<p:idleMonitor timeout="900000"> 	<!-- 15 minutos -->
+		<p:ajax event="idle" listener="#{credValidation.timeOut()}"	oncomplete="alert('Sessão Expirada')" />
+	</p:idleMonitor>
+</h:form>
 <h:body>
 </h:body>
 </html>

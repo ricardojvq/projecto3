@@ -1,5 +1,6 @@
 package projecto3.grupo3.rafaelaricardo;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
@@ -86,6 +87,20 @@ public class credValidation implements Serializable {
 		faces.getCurrentInstance().getExternalContext().invalidateSession();
 		users.getLoggedUsers().remove(loggedUser.getUsername());
 		return "/login.xhtml?faces-redirect=true";
+	}
+	
+	@SuppressWarnings("static-access")
+	public void timeOut() {
+		msgBean.timedOut();
+		faces.getCurrentInstance().getExternalContext().getSessionMap().remove(LoggedUser.AUTH_KEY);
+		faces.getCurrentInstance().getExternalContext().invalidateSession();
+		users.getLoggedUsers().remove(loggedUser.getUsername());
+		try {
+			faces.getCurrentInstance().getExternalContext().redirect("/Projecto3/login.xhtml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public boolean isErrorMsg() {
