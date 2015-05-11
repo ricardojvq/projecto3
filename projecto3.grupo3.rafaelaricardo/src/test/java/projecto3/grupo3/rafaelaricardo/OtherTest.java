@@ -2,6 +2,7 @@ package projecto3.grupo3.rafaelaricardo;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -34,4 +35,15 @@ public class OtherTest {
 
 	}
 
+	@Test
+	public void testPot() {
+		String expression = "2^2";
+		calc.setExpression(expression);
+		calc.getResult();
+		String exprFinal = calc.getExpression();
+		double nr = Double.parseDouble(exprFinal);
+
+		// assertThat(Math.pow(2, 2), is(equalTo(exprFinal)));
+		assertEquals(Math.pow(2, 2), nr, 0d);
+	}
 }

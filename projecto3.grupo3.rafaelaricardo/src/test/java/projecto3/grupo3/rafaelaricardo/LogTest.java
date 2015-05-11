@@ -51,4 +51,5 @@ public class LogTest extends TestCase {
 		assertEquals(2d, nr, 0d);
 
 	}
+
 }
