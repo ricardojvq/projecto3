@@ -1,12 +1,8 @@
 package projecto3.grupo3.rafaelaricardo;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.closeTo;
-import static org.hamcrest.Matchers.is;
 import junit.framework.TestCase;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -14,7 +10,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class DivisaoTest extends TestCase {
+public class LogTest extends TestCase {
 
 	@Mock
 	History calcHistory;
@@ -26,17 +22,33 @@ public class DivisaoTest extends TestCase {
 	@Override
 	@Before
 	public void setUp() {
+
 	}
 
-	@Ignore
 	@Test
-	public void testGetExpression() {
-		String expression = "1450.5/75.5";
+	public void testExp1() throws Exception {
+
+		String expression = "log10(5)";
+		// Expression e = new ExpressionBuilder("log10(5)").build();
 		calc.setExpression(expression);
 		calc.getResult();
 		String exprFinal = calc.getExpression();
 		double nr = Double.parseDouble(exprFinal);
-		assertThat(19.21192053, is(closeTo(nr, 0.00001)));
+		// assertEquals(Math.log10(5), nr.evaluate(), 0d);
+		assertEquals(Math.log10(5), nr, 0d);
+
+		// nr nr.evaluate(), 0d);
 	}
 
+	@Test
+	public void testExp2() {
+		String expression = "2log(e)";
+
+		calc.setExpression(expression);
+		calc.getResult();
+		String exprFinal = calc.getExpression();
+		double nr = Double.parseDouble(exprFinal);
+		assertEquals(2d, nr, 0d);
+
+	}
 }
