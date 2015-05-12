@@ -29,15 +29,12 @@ public class LogTest extends TestCase {
 	public void testExp1() throws Exception {
 
 		String expression = "log10(5)";
-		// Expression e = new ExpressionBuilder("log10(5)").build();
 		calc.setExpression(expression);
 		calc.getResult();
 		String exprFinal = calc.getExpression();
 		double nr = Double.parseDouble(exprFinal);
-		// assertEquals(Math.log10(5), nr.evaluate(), 0d);
 		assertEquals(Math.log10(5), nr, 0d);
 
-		// nr nr.evaluate(), 0d);
 	}
 
 	@Test
@@ -49,6 +46,6 @@ public class LogTest extends TestCase {
 		String exprFinal = calc.getExpression();
 		double nr = Double.parseDouble(exprFinal);
 		assertEquals(2d, nr, 0d);
-
 	}
+
 }

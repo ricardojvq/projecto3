@@ -43,6 +43,7 @@ public class BasicTest {
 		calc.getResult();
 		String exprFinal = calc.getExpression();
 		assertThat("13.0", equalTo(exprFinal));
+
 	}
 
 	@Test
