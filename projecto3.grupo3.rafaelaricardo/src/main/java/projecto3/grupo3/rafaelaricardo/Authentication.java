@@ -17,11 +17,10 @@ public class Authentication implements Filter {
 
 	public void doFilter(ServletRequest req, ServletResponse resp,FilterChain chain) throws IOException, ServletException {
 
-		if (((HttpServletRequest)req).getSession().getAttribute(LoggedUser.AUTH_KEY) == null) {
+		if (((HttpServletRequest)req).getSession().getAttribute("uname") == null) {
 			((HttpServletResponse)resp).sendRedirect("../NonAuthorized.xhtml");
 		} else {
-
-			chain.doFilter(req, resp);
+			chain.doFilter(req, resp);  
 		}
 	}
 

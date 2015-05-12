@@ -251,7 +251,7 @@
 								<p:ajax update="campoTexto" resetValues="true" />
 							</h:commandButton>
 						</div>
-						<p:poll interval="1" update="onlineUsers janela" />
+						<p:poll interval="300" update="onlineUsers janela" />
 						<p:idleMonitor timeout="900000">
 							<!-- 15 minutos -->
 							<p:ajax event="idle" listener="#{credValidation.timeOut()}"
@@ -262,8 +262,6 @@
 				</div>
 
 			</div>
-
-			<a href="chat.xhtml">Chat</a>
 		</ui:define>
 	</ui:composition>
 </body>

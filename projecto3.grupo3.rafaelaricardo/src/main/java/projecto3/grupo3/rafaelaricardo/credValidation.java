@@ -12,6 +12,10 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Named
 @RequestScoped
@@ -24,7 +28,7 @@ public class credValidation implements Serializable {
 
 	@Inject
 	private LoggedUser loggedUser; // Utilizador corrente
-	
+
 	@Inject
 	private MsgBean msgBean;
 
@@ -32,7 +36,7 @@ public class credValidation implements Serializable {
 	private String password; // String para validação de login
 	private String result = "";
 	private boolean errorMsg = false;
-	
+
 	@ManagedProperty("#{loggedUser}")
 	FacesContext faces;
 
@@ -54,6 +58,7 @@ public class credValidation implements Serializable {
 
 	@SuppressWarnings("static-access")
 	public String doLogin() {
+		ServletRequest req = (HttpServletRequest)faces.getCurrentInstance().getExternalContext().getRequest();
 		if (users.getUsers().containsKey(username)) {
 			if (password.equals(users.getUsers().get(username))) {
 				if (users.getLoggedUsers().contains(username)) {
@@ -63,10 +68,10 @@ public class credValidation implements Serializable {
 					errorMsg = false;
 					loggedUser.setUsername(username);
 					loggedUser.setLogged(true);
+					((HttpServletRequest)req).getSession().setAttribute("uname", username);
 					faces.getCurrentInstance().getExternalContext().getSessionMap().put(LoggedUser.AUTH_KEY, username);
 					users.getLoggedUsers().add(loggedUser.getUsername());
 					result = "/Authorized/calc1.xhtml?faces-redirect=true";
-					System.out.println(LoggedUser.AUTH_KEY);
 					password = "";
 				}
 			} else {
@@ -79,7 +84,7 @@ public class credValidation implements Serializable {
 		}
 		return result;
 	}
-	
+
 	@SuppressWarnings("static-access")
 	public String doLogout() {
 		msgBean.logoutMsg();
@@ -88,7 +93,7 @@ public class credValidation implements Serializable {
 		users.getLoggedUsers().remove(loggedUser.getUsername());
 		return "/login.xhtml?faces-redirect=true";
 	}
-	
+
 	@SuppressWarnings("static-access")
 	public void timeOut() {
 		msgBean.timedOut();
@@ -132,7 +137,7 @@ public class credValidation implements Serializable {
 			}
 		}
 	}
-	
+
 	public ArrayList<String> usersOnline() {
 		return users.getLoggedUsers();
 	}
