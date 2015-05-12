@@ -66,7 +66,7 @@ public class credValidation implements Serializable {
 					faces.getCurrentInstance().getExternalContext().getSessionMap().put(LoggedUser.AUTH_KEY, username);
 					users.getLoggedUsers().add(loggedUser.getUsername());
 					result = "/Authorized/calc1.xhtml?faces-redirect=true";
-					username = "";
+					System.out.println(LoggedUser.AUTH_KEY);
 					password = "";
 				}
 			} else {

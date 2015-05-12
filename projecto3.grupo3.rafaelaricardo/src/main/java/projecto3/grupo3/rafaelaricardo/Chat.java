@@ -24,6 +24,11 @@ public class Chat implements Serializable {
 	private CopyOnWriteArrayList<Message> messages = new CopyOnWriteArrayList<Message>();
 
 	public List<Message> getMessages() {
+		for (Message m:messages) {
+			if (m.getMessage() == null) {
+				messages.remove(m);
+			}
+		}
 		return messages;
 	}
 

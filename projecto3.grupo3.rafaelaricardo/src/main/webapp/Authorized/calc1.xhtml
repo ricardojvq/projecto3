@@ -20,14 +20,14 @@
 			<div id="topbar">
 				<h:form id="topForm" prependId="false">
 					<div class="a">
-						<div id="welcomeMsg">Bem-vindo #{loggedUser.username}</div>
+						<div id="welcomeMsg"><span id="wlcm">Bem-vindo,</span> #{loggedUser.username}</div>
 					</div>
 					<div class="b">
 						<p:clock />
 					</div>
 					<div class="c">
 						<div id="logoutButton">
-							<h:commandButton action="#{credValidation.doLogout()}"
+							<h:commandButton styleClass="logoutBt" action="#{credValidation.doLogout()}"
 								value="Logout" />
 						</div>
 					</div>
@@ -234,7 +234,7 @@
 							<h:panelGroup id="onlineUsers">
 								<ui:repeat var="online_user"
 									value="#{credValidation.usersOnline()}">
-			@ #{online_user}
+			@#{online_user}
 		<br />
 								</ui:repeat>
 							</h:panelGroup>
@@ -243,7 +243,8 @@
 							<h:inputText value="#{msgBean.message}" id="campoTexto" />
 							<h:commandButton styleClass="sendMsgButton" value="Enviar"
 								id="botaoChat" actionListener="#{msgBean.sendMsg}" >
-								<f:ajax execute="campoTexto" render="janela campoTexto" />
+								<f:ajax execute="campoTexto" render="janela campoTexto"/>
+								<p:ajax update="campoTexto" resetValues="true" />
 							</h:commandButton>
 							<h:commandButton styleClass="resetMsgButton" id="resetChatButton"
 								value="Reset">
