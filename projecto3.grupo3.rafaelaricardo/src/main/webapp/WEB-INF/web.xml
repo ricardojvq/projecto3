@@ -32,18 +32,10 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>LoginRedirect</filter-name>
-		<url-pattern>/login.xhtml</url-pattern>
+		<url-pattern>/login.xhtml?faces-redirect=true</url-pattern>
 	</filter-mapping>
 	<mime-mapping>
 		<extension>ttf</extension>
 		<mime-type>application/x-font-ttf</mime-type>
 	</mime-mapping>
-	<context-param>
-		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-		<param-value>client</param-value>
-	</context-param>
-	<error-page>
-		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
-		<location>/login.xhtml</location>
-	</error-page>
 </web-app>

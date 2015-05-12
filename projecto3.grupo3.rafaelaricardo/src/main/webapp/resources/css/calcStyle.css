@@ -28,10 +28,11 @@ body {
 }
 
 #chat {
+	margin-top: 40px;
 	text-align: center;
 	width: 49%;
 	display: inline-block;
-	vertical-align: super;
+	vertical-align: top;
 }
 
 #chatFrame {
@@ -724,17 +725,17 @@ div.even {
 	margin: 10px;
 	border: 0px;
 	text-align: center;
-	width: 30%;
+	width: 40%;
 	display: inline-block;
+	vertical-align: middle;
 }
 
 .showHistButton {
 	background-color: rgba(110, 158, 255, 1);
 	width: 189px;
-	height: 56px;
-	font-size: 16px;
+	height: 40px;
+	font-size: 14px;
 	font-family: helvetica;
-	line-height: 54px;
 	text-align: center;
 	color: rgba(232, 232, 232, 1);
 	text-transform: uppercase;
@@ -752,10 +753,9 @@ div.even {
 .showStatButton {
 	background-color: rgba(55, 176, 83, 1);
 	width: 189px;
-	height: 56px;
-	font-size: 16px;
+	height: 40px;
+	font-size: 14px;
 	font-family: helvetica;
-	line-height: 54px;
 	text-align: center;
 	color: rgba(214, 214, 214, 1);
 	text-transform: uppercase;
@@ -851,13 +851,15 @@ div.c {
 	vertical-align: text-top;
 	display: inline-table;
 	width: 70%;
-	min-height: 200px;
+	height: 50vh;
 	background-color: white;
 	color: black;
 	border: 1px solid rgba(0,0,0,0.5);
+	box-sizing:border-box;
 }
 
 #msgWindow {
+	text-align:left;
 	height: 100%;
 	display: table-cell;
 	vertical-align: bottom;
@@ -869,36 +871,69 @@ div.c {
 }
 
 #onlineUsers {
-	vertical-align: inline-bottom;
-	display: inline;
+	border: 1px solid rgba(0,0,0,0.5);
+	vertical-align: text-top;
+	display: inline-table;
 	padding-left: 10px;
 	padding-top:5px;
-	width: 30%;
-	min-height: 200px;
-	background-color: silver;
-	color: black;
+	width: 20%;
+	height: 50vh;
+	background-color: cornflowerblue;
+	color: white;
+	font-weight: 200;
+	font-size: x-large;
+	overflow: scroll;
+	box-sizing:border-box;
 }
 
 #mensagem {
+	margin-top:10px;
 	display: block;
-	width: 100%;
-	background-color: blue;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: rgba(0,0,0,0);
 }
 
 #campoTexto {
-	display: inline-table;
-	vertical-align: super;
-	width: 60%;
+	display: inline-block;
+	vertical-align: middle;
+	width: 80%;
+	border: 3px solid rgba(0,0,0,0.2);
 }
 
 #botaoChat {
-	display: inline-table;
-	vertical-align: super;
-	width: 10%;
+	height:20px;
+	display: inline-block;
+	vertical-align: middle;
+	width: 9%;
+	border:0px;
 }
 
 #resetChatButton {
-	display: inline-table;
-	vertical-align: super;
-	width: 10%;
+	height:20px;
+	display: inline-block;
+	vertical-align: middle;
+	width: 9%;
+	border:0px;
+}
+
+.sendMsgButton {
+	background-color: #009E82;
+	font-size: 9px;
+	font-family: helvetica;
+	text-align: center;
+	color: white;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 0px rgba(0, 0, 0, 1)
+}
+
+.resetMsgButton {
+	background-color: #EDB512;
+	font-size: 9px;
+	font-family: helvetica;
+	text-align: center;
+	color: white;
+	text-transform: uppercase;
+	text-shadow: 0px 0px 0px rgba(0, 0, 0, 1)
 }

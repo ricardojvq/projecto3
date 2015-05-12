@@ -24,7 +24,12 @@ public class MsgBean {
 	public void sendMsg(ActionEvent ae) {
 		msg.setUsername(logUser.getUsername());
 		msg.setDate();
+		int count1 = chat.getCount();
 		chat.sendMessage(msg);
+		int count2 = chat.getCount();
+		if (count1 != count2) {
+			msg.setMessage("");
+		}
 	}
 	
 	public void logoutMsg() {

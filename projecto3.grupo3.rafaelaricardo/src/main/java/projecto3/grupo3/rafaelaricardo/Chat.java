@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
@@ -32,6 +33,7 @@ public class Chat implements Serializable {
 	
 	public void sendMessage(Message msg) {
 		messages.add(msg);
+		this.sentMsg();
 		
 	}
 	
