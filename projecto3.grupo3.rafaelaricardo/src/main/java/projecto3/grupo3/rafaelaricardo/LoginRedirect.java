@@ -12,27 +12,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LoginRedirect implements Filter
-{
+public class LoginRedirect implements Filter {
 	private FilterConfig customedFilterConfig;
 
 	public void init(FilterConfig customedFilterConfig) throws ServletException {
 		this.customedFilterConfig = customedFilterConfig;
 	}
-	
+
 	@Override
-	public void doFilter(ServletRequest req, ServletResponse resp,FilterChain chain) throws IOException, ServletException
-	{
+	public void doFilter(ServletRequest req, ServletResponse resp,FilterChain chain) throws IOException, ServletException {
 
 		if (((HttpServletRequest)req).getSession().getAttribute("uname") != null) {
-			((HttpServletResponse)resp).sendRedirect("/Projecto3/Authorized/calc1.xhtml");
+			((HttpServletResponse)resp).sendRedirect(((HttpServletRequest)req).getContextPath() + "/Authorized/calc1.xhtml");
 		} else {
-			chain.doFilter(req, resp);
+			chain.doFilter(req, resp);  
 		}
 	}
 
-	public void destroy()
-	{
+	public void destroy() {
 		customedFilterConfig = null;
 	}
 }

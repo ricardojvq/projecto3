@@ -3,7 +3,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
 <head>
 <meta charset="UTF-8" />
 <h:outputStylesheet library="css" name="calcStyle.css" />
@@ -23,7 +24,7 @@
 						<div id="welcomeMsg"><span id="wlcm">Bem-vindo,</span> #{loggedUser.username}</div>
 					</div>
 					<div class="b">
-						<p:clock />
+						<p:clock pattern="dd/MM/yyyy HH:mm"/>
 					</div>
 					<div class="c">
 						<div id="logoutButton">
@@ -262,6 +263,7 @@
 				</div>
 
 			</div>
+			
 		</ui:define>
 	</ui:composition>
 </body>

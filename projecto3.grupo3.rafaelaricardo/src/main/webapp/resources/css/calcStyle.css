@@ -643,7 +643,9 @@ div.even {
 
 .ui-clock {
 	background-color: transparent;
-	font:1em normal Arial;
+	font-family: helvetica;
+	font-weight: 200;
+	border: 0px;
 }
 
 .normalCalcButton {

@@ -15,6 +15,11 @@ import javax.servlet.http.HttpSession;
 public class Authentication implements Filter {
 	private FilterConfig customedFilterConfig;
 
+	public void init(FilterConfig customedFilterConfig) throws ServletException {
+		this.customedFilterConfig = customedFilterConfig;
+	}
+
+	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp,FilterChain chain) throws IOException, ServletException {
 
 		if (((HttpServletRequest)req).getSession().getAttribute("uname") == null) {
@@ -22,10 +27,6 @@ public class Authentication implements Filter {
 		} else {
 			chain.doFilter(req, resp);  
 		}
-	}
-
-	public void init(FilterConfig customedFilterConfig) throws ServletException {
-		this.customedFilterConfig = customedFilterConfig;
 	}
 
 	public void destroy() {
