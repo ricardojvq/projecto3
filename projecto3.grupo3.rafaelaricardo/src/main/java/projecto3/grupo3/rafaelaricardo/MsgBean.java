@@ -15,6 +15,9 @@ public class MsgBean {
 	@Inject
 	private LoggedUser logUser;
 	
+	@Inject
+	private RegisteredUsers regUsers;
+	
 	private Message msg;
 	
 	public MsgBean() {
@@ -32,6 +35,9 @@ public class MsgBean {
 		msg.setDate();
 		msg.setMessage("( *** "+logUser.getUsername()+" abandonou a sala ***)");
 		chat.sendMessage(msg);
+		if (regUsers.getLoggedUsers().size() == 0) {
+			chat.getMessages().clear();
+		}
 	}
 	
 	public void timedOut() {

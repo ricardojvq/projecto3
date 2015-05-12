@@ -21,28 +21,31 @@
 			<div id="topbar">
 				<h:form id="topForm" prependId="false">
 					<div class="a">
-						<div id="welcomeMsg"><span id="wlcm">Bem-vindo,</span> #{loggedUser.username}</div>
+						<div id="welcomeMsg">
+							<span id="wlcm">Bem-vindo,</span> #{loggedUser.username}
+						</div>
 					</div>
 					<div class="b">
-						<p:clock pattern="dd/MM/yyyy HH:mm"/>
+						<p:clock pattern="dd/MM/yyyy HH:mm" />
 					</div>
 					<div class="c">
 						<div id="logoutButton">
-							<h:commandButton styleClass="logoutBt" action="#{credValidation.doLogout()}"
-								value="Logout" />
+							<h:commandButton styleClass="logoutBt"
+								action="#{credValidation.doLogout()}" value="Logout" />
 						</div>
 					</div>
 				</h:form>
 			</div>
 
 			<div id="corpo">
-				<f:ajax render="ecra @form histDiv statDiv">
-					<h:form id="formCalc">
-						<div id="calcSimples">
-							<div id="screen">
-								<h:outputText id="ecra" styleClass="screen"
-									value="#{calculator.expression}" />
-							</div>
+				<h:form id="formCalc">
+					<div id="calcSimples">
+						<div id="screen">
+							<h:outputText id="ecra" styleClass="screen"
+								value="#{calculator.expression}" />
+						</div>
+						<f:ajax render="ecra @form histDiv statDiv">
+
 							<div id="teclado">
 								<div class="linha odd">
 									<h:commandButton styleClass="myButton" id="AC" action="calc1"
@@ -148,11 +151,13 @@
 									</div>
 								</h:panelGroup>
 							</div>
+						</f:ajax>
 
-						</div>
 
-						<!-- HISTÓRICO E ESTATÍSTICAS -->
+					</div>
 
+					<!-- HISTÓRICO E ESTATÍSTICAS -->
+					<f:ajax render="@form histDiv statDiv">
 						<h:panelGroup layout="block" id="bottomForm"
 							styleClass="otherButtons">
 							<h:commandButton id="histShowBt" styleClass="showHistButton"
@@ -215,9 +220,8 @@
 								</h:panelGrid>
 							</h:panelGrid>
 						</h:panelGroup>
-
-					</h:form>
-				</f:ajax>
+					</f:ajax>
+				</h:form>
 
 				<!-- CHAT -->
 
@@ -243,8 +247,8 @@
 						<div id="mensagem">
 							<h:inputText value="#{msgBean.message}" id="campoTexto" />
 							<h:commandButton styleClass="sendMsgButton" value="Enviar"
-								id="botaoChat" actionListener="#{msgBean.sendMsg}" >
-								<f:ajax execute="campoTexto" render="janela campoTexto"/>
+								id="botaoChat" actionListener="#{msgBean.sendMsg}">
+								<f:ajax execute="campoTexto" render="janela campoTexto" />
 								<p:ajax update="campoTexto" resetValues="true" />
 							</h:commandButton>
 							<h:commandButton styleClass="resetMsgButton" id="resetChatButton"
@@ -252,7 +256,7 @@
 								<p:ajax update="campoTexto" resetValues="true" />
 							</h:commandButton>
 						</div>
-						<p:poll interval="300" update="onlineUsers janela" />
+						<p:poll interval="1" update="onlineUsers janela" />
 						<p:idleMonitor timeout="900000">
 							<!-- 15 minutos -->
 							<p:ajax event="idle" listener="#{credValidation.timeOut()}"
@@ -263,7 +267,7 @@
 				</div>
 
 			</div>
-			
+
 		</ui:define>
 	</ui:composition>
 </body>

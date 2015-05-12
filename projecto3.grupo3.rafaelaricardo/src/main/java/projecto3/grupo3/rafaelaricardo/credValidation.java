@@ -88,7 +88,6 @@ public class credValidation implements Serializable {
 	@SuppressWarnings("static-access")
 	public String doLogout() {
 		msgBean.logoutMsg();
-		faces.getCurrentInstance().getExternalContext().getSessionMap().remove(LoggedUser.AUTH_KEY);
 		faces.getCurrentInstance().getExternalContext().invalidateSession();
 		users.getLoggedUsers().remove(loggedUser.getUsername());
 		return "/login.xhtml?faces-redirect=true";

@@ -1,8 +1,8 @@
-var expr = document.getElementById("formCalc:ecra").value;
+var expr = document.getElementById("formCalc:ecra").textContent;
 var lastOperator = expr.charAt(expr.length-1);
 
 function plus() {
-	var expr = document.getElementById("formCalc:ecra").value;
+	var expr = document.getElementById("formCalc:ecra").textContent;
 	var lastOperator = expr.charAt(expr.length-1);
     if (lastOperator == "+") {
 				document.getElementById("formCalc:plus").style.color = "darkgray";
@@ -11,7 +11,7 @@ function plus() {
 }
 
 function multiply() {
-	var expr = document.getElementById("formCalc:ecra").value;
+	var expr = document.getElementById("formCalc:ecra").textContent;
 	var lastOperator = expr.charAt(expr.length-1);
     if (lastOperator == "*") {
 				document.getElementById("formCalc:multiply").style.color = "darkgray";
@@ -20,7 +20,7 @@ function multiply() {
 }
 
 function divide() {
-	var expr = document.getElementById("ecra").value;
+	var expr = document.getElementById("formCalc:ecra").textContent;
 	var lastOperator = expr.charAt(expr.length-1);
     if (lastOperator == "/") {
 				document.getElementById("formCalc:divide").style.color = "darkgray";

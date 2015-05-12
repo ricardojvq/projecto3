@@ -33,14 +33,14 @@ public class Calculator implements Serializable {
 	private boolean percentageValid = false;
 
 	private int brackets = 0;
-	
+
 	private boolean syCalcShow = false;
 	private boolean histDiv = false;
 	private boolean statDiv = false;
-	
+
 	private long startTime;
 	private long endTime;
-	
+
 	private ArrayList<HistTime> histAndTime = new ArrayList<HistTime>();
 
 
@@ -76,11 +76,11 @@ public class Calculator implements Serializable {
 	public void setSyCalcShow(boolean syCalcShow) {
 		this.syCalcShow = syCalcShow;
 	}
-	
+
 	public void showSyCalc() {
 		this.syCalcShow = true;
 	}
-	
+
 	public void hideSyCalc() {
 		this.syCalcShow = false;
 	}
@@ -327,26 +327,44 @@ public class Calculator implements Serializable {
 	}
 
 	public void getFactorial() {
-		String fact;
-		String[] expSplit = expression.split("[-+*/]");
-		int index = -1;
-		for (String s:expSplit) {
-			index++;
-			if (s.contains("!")) {
-				String temp = s.substring(0,s.length()-1);
-				long dTemp = Long.parseLong(temp);
-				if (dTemp <= 1) {
-					fact = "1";
-				} else {
-					long factTemp = 1;
-					for (long i = dTemp; i > 1; i--) {
-						factTemp *= i;
+		if (this.expression == null || this.expression.equals("!")) {
+			this.expression = "1";
+		} else {
+			String fact;
+			String[] expSplit = expression.split("[-+*/]");
+			int index = -1;
+			boolean notNumber = false;
+			for (String s:expSplit) {
+				index++;
+				if (s.contains("!")) {
+					String temp = s.substring(0,s.length()-1);
+					String temp2 = s;
+					for (int i = 0; i < temp2.length(); i++) {
+						int num = (int)temp2.charAt(i);
+						if ((num <= 47 || num >= 58) && num != 33) {
+							notNumber = true;
+							break;
+						}
 					}
-					BigInteger bigResult = BigInteger.valueOf(factTemp);
-					fact = bigResult.toString();
-					expression = expression.replace(expSplit[index],fact);
+					if (!notNumber) {
+						long dTemp = Long.parseLong(temp);
+						if (dTemp <= 1) {
+							this.expression = "1";
+						} else if (dTemp < 21) {
+							long factTemp = 1;
+							for (long i = dTemp; i > 1; i--) {
+								factTemp *= i;
+							}
+							BigInteger bigResult = BigInteger.valueOf(factTemp);
+							fact = bigResult.toString();
+							expression = expression.replace(expSplit[index],fact);
+						} else {
+							this.expression = "Numero muito grande";
+						}
+					} else {
+						this.expression = "Operacao Invalida";
+					}
 				}
-				break;
 			}
 		}
 	}
@@ -391,8 +409,8 @@ public class Calculator implements Serializable {
 		}
 
 	}
-	
-	
+
+
 
 	public ArrayList<HistTime> getHistAndTime() {
 		return histAndTime;
@@ -417,7 +435,7 @@ public class Calculator implements Serializable {
 	public void reuse(ActionEvent ae) {
 		expression = (String)ae.getComponent().getAttributes().get("reut");
 	}
-	
+
 	public String totalTime() {
 		long dif = endTime - startTime;
 		double ms = (double)(dif/1000000.0);

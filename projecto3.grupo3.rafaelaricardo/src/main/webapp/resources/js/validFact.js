@@ -1,6 +1,6 @@
 function fact() {
-	if (document.getElementById("ecra").textContent != "0") {
-		var expr = document.getElementById("ecra").textContent;
+	if (document.getElementById("formCalc:ecra").textContent != "0") {
+		var expr = document.getElementById("formCalc:ecra").textContent;
 		var fact = "";
 		if (expr.indexOf("!") > -1) {
 			for (var i = 0; i < expr.length; i++) {
@@ -22,7 +22,7 @@ function fact() {
 }
 
 function bracket() {
-	var expr = document.getElementById("ecra").textContent;
+	var expr = document.getElementById("formCalc:ecra").textContent;
 	var brackets = 0;
 	for (var i = 0; i < expr.length; i++) {
 		if (expr.charAt(i) == "(") brackets++;
@@ -37,7 +37,7 @@ function bracket() {
 
 function realNumberFact() {
 	var expTemp = "";
-	var exp = document.getElementById("ecra").textContent;
+	var exp = document.getElementById("formCalc:ecra").textContent;
 	if (exp.indexOf("!") > -1) {
 		for (var i = 0; i < exp.length; i++) {
 			if (exp.charCodeAt(i) > 47 && exp.charCodeAt(i) < 58 || exp.charAt(i) == ".") {
@@ -58,7 +58,7 @@ function realNumberFact() {
 }
 
 function validF() {
-	var exp = document.getElementById("ecra").textContent;
+	var exp = document.getElementById("formCalc:ecra").textContent;
 	var regex = /([\+\-\*\/])/;
 	var expStrings = exp.split(regex);
 	var len = expStrings.length;
@@ -68,6 +68,27 @@ function validF() {
 		document.getElementById("formCalc:factor").style.background = "darkgrey";
 		document.getElementById("formCalc:factor").style.color = "silver";
 		document.getElementById("formCalc:factor").disabled = "disabled";
-	
+
+	}
+}
+
+function realNumber() {
+	var exp = document.getElementById("formCalc:ecra").textContent;
+	var regex = /([\+\-\*\/])/;
+	var expStrings = exp.split(regex);
+	var len = expStrings.length;
+	var conta = len - 1;
+	var last = expStrings[conta];
+	var go = 0;
+	for (var i = 0; i < last.length; i++) {
+		if (last.charAt(i) <48 && last.charAt(i) > 57) {
+			go = 1;
+			break;
+		}
+	}
+	if (go == 1) {
+		document.getElementById("formCalc:factor").style.background = "darkgrey";
+		document.getElementById("formCalc:factor").style.color = "silver";
+		document.getElementById("formCalc:factor").disabled = "disabled";
 	}
 }
