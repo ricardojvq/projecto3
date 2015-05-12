@@ -24,6 +24,12 @@ public class OtherTest {
 	public void setUp() {
 	}
 
+	/*
+	 * @Test(expected = java.lang.IllegalArgumentException.class) public void
+	 * exceptionSQRTTest() { String expr = "sqrt(-1)"; calc.setExpression(expr);
+	 * calc.getResult(); }
+	 */
+
 	@Test
 	public void testNegSQRT() {
 		String expression = "sqrt(-1)";
