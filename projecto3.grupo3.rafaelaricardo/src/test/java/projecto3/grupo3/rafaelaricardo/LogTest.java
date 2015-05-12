@@ -26,7 +26,7 @@ public class LogTest extends TestCase {
 	}
 
 	@Test
-	public void testExp1() throws Exception {
+	public void testExp1() {
 
 		String expression = "log10(5)";
 		calc.setExpression(expression);

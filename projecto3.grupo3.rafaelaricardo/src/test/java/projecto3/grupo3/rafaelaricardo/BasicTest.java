@@ -65,14 +65,18 @@ public class BasicTest {
 	}
 
 	@Test
-	public void testDivbyZero() throws Exception {
+	public void testDivbyZero() {
 		String expression = "1 / 0";
 		calc.setExpression(expression);
 		calc.getResult();
 		String exprFinal = calc.getExpression();
 
 		assertThat("Divisao por zero", equalTo(exprFinal));
-
 	}
 
+	/*
+	 * @Test(expected = java.lang.ArithmeticException.class) public void
+	 * testDivbyZero2() { String expr = "1 / 0"; calc.setExpression(expr);
+	 * calc.getResult(); }
+	 */
 }
