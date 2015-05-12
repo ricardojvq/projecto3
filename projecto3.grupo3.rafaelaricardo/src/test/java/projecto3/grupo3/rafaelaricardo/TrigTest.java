@@ -76,4 +76,22 @@ public class TrigTest {
 		assertEquals(Math.tan(Math.PI), nr, 0d);
 	}
 
+	@Test
+	public void testCos2() {
+		final double x = 0.5, y = 0.25;
+		String expression = "2cos(0.5*0.25)";
+		calc.setExpression(expression);
+		calc.getResult();
+		String exprFinal = calc.getExpression();
+		double nr = Double.parseDouble(exprFinal);
+
+		// assertThat((Math.cos(Math.PI)), is(closeTo(nr, 0.00001)));
+		assertEquals(2d * Math.cos(x * y), nr, 0d);
+
+		/*
+		 * double result = new ExpressionBuilder("2cos(xy)").variables("x", "y")
+		 * .build().setVariable("x", 0.5d).setVariable("y", 0.25d) .evaluate();
+		 * assertEquals(2d * Math.cos(0.5d * 0.25d), result, 0d);
+		 */
+	}
 }
