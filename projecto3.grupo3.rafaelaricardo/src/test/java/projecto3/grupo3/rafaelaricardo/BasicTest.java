@@ -74,9 +74,4 @@ public class BasicTest {
 		assertThat("Divisao por zero", equalTo(exprFinal));
 	}
 
-	/*
-	 * @Test(expected = java.lang.ArithmeticException.class) public void
-	 * testDivbyZero2() { String expr = "1 / 0"; calc.setExpression(expr);
-	 * calc.getResult(); }
-	 */
 }

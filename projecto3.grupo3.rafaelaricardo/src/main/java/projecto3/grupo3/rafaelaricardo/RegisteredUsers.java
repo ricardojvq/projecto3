@@ -12,7 +12,7 @@ import javax.inject.Named;
 public class RegisteredUsers implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private ConcurrentHashMap<String,String> users;
+	private ConcurrentHashMap<String, String> users;
 	private ArrayList<String> loggedUsers = new ArrayList<>();
 
 	public RegisteredUsers() {
@@ -41,12 +41,8 @@ public class RegisteredUsers implements Serializable {
 		loggedUsers.add(u);
 	}
 
-	//	public String getTezting() {
-	//		return this.tezting;
-	//	}
-
-
-
-
+	// public String getTezting() {
+	// return this.tezting;
+	// }
 
 }

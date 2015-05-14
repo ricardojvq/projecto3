@@ -54,7 +54,6 @@ public class credValidation implements Serializable {
 		this.password = password;
 	}
 
-
 	public String doLogin() {
 		synchronized (users.getLoggedUsers()) {
 			if (users.getUsers().containsKey(username)) {
@@ -104,21 +103,24 @@ public class credValidation implements Serializable {
 		invalidateSession();
 		synchronized (users.getLoggedUsers()) {
 			System.out.println(users.getLoggedUsers().size());
-			users.getLoggedUsers().remove(users.getLoggedUsers().indexOf(loggedUser.getUsername()));
+			users.getLoggedUsers().remove(
+					users.getLoggedUsers().indexOf(loggedUser.getUsername()));
 			System.out.println(users.getLoggedUsers().size());
 		}
 		msgBean.logoutMsg(uname);
-		return "/login.xhtml?faces-redirect=true";	
+		return "/login.xhtml?faces-redirect=true";
 	}
 
 	@SuppressWarnings("static-access")
 	public void timeOut() {
 		msgBean.timedOut();
-		faces.getCurrentInstance().getExternalContext().getSessionMap().remove(LoggedUser.AUTH_KEY);
+		faces.getCurrentInstance().getExternalContext().getSessionMap()
+				.remove(LoggedUser.AUTH_KEY);
 		faces.getCurrentInstance().getExternalContext().invalidateSession();
 		users.getLoggedUsers().remove(loggedUser.getUsername());
 		try {
-			faces.getCurrentInstance().getExternalContext().redirect("/Projecto3/login.xhtml");
+			faces.getCurrentInstance().getExternalContext()
+					.redirect("/Projecto3/login.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -175,7 +177,5 @@ public class credValidation implements Serializable {
 	public void setLoggedUsers(ArrayList<String> lUsers) {
 		this.users.setLoggedUsers(lUsers);
 	}
-
-
 
 }

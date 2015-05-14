@@ -17,7 +17,6 @@ html, body {
 	height: 100%;
 }
 
-
 body {
 	background-color: white;
 	margin: 0;
@@ -37,7 +36,7 @@ body {
 
 #chatFrame {
 	width: 100%;
-	min-height:700px; 
+	min-height: 700px;
 }
 
 #opcao {
@@ -483,7 +482,6 @@ div.even {
 
 #loginPage {
 	text-align: center;
-	
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10%;
@@ -498,17 +496,16 @@ div.even {
 }
 
 #uname {
-	border:1px solid;
-	
+	border: 1px solid;
 }
 
 #pword {
-	border:1px solid;
+	border: 1px solid;
 }
 
 #loginSubmit {
 	
-} 
+}
 
 .submitButton {
 	-moz-box-shadow: inset 0px 1px 0px 0px #3dc21b;
@@ -537,7 +534,7 @@ div.even {
 	text-decoration: none;
 	text-shadow: 0px 1px 0px #2f6627;
 	margin-right: 0px;
-	min-width:125px;
+	min-width: 125px;
 }
 
 .submitButton:hover {
@@ -585,7 +582,7 @@ div.even {
 	text-decoration: none;
 	text-shadow: 0px 1px 0px #2f6627;
 	margin-right: 0px;
-	min-width:125px;
+	min-width: 125px;
 }
 
 .registerButton:hover {
@@ -605,11 +602,13 @@ div.even {
 	position: relative;
 	top: 1px;
 }
+
 #loginMessage {
 	color: firebrick;
 }
-.row{
-	margin-left:0px;
+
+.row {
+	margin-left: 0px;
 }
 
 #topbar {
@@ -629,16 +628,13 @@ div.even {
 	font-size:1em;
 	font-weight: normal;
 } */
-
 #logoutButton {
 	font-family: helvetica;
-	
 }
 
 #welcomeMsg {
 	font-weight: bold;
-	font-family:Arial;
-	
+	font-family: Arial;
 }
 
 .ui-clock {
@@ -653,11 +649,11 @@ div.even {
 	-moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 0 0;
 	box-shadow: rgba(0, 0, 0, 0.2) 0 1px 0 0;
 	border-bottom-color: #333;
-	border: 1px solid rgba(0,0,0,0.2);
+	border: 1px solid rgba(0, 0, 0, 0.2);
 	background-color: cornflowerblue;
 	border-radius: 0px;
 	color: #282828;
-	font-family: helvetica,'Verdana', Arial, sans-serif;
+	font-family: helvetica, 'Verdana', Arial, sans-serif;
 	font-size: 30px;
 	padding: 5px
 }
@@ -671,7 +667,7 @@ div.even {
 	background-color: firebrick;
 	border-radius: 0px;
 	color: #fff;
-	font-family: helvetica,'Verdana', Arial, sans-serif;
+	font-family: helvetica, 'Verdana', Arial, sans-serif;
 	font-size: 30px;
 	padding: 5px
 }
@@ -799,25 +795,27 @@ div#formCalc:bottomForm {
 
 #topForm {
 	padding-top: 5px;
-	text-align:center;
+	text-align: center;
 }
 
 div.a {
 	width: 33%;
-	display:inline-block;
+	display: inline-block;
 }
+
 div.b {
 	width: 33%;
-	display:inline-block;
+	display: inline-block;
 }
+
 div.c {
 	width: 33%;
-	display:inline-block;
+	display: inline-block;
 }
 
 #botoes {
 	margin-right: 0px;
-	width:100%;
+	width: 100%;
 	padding-top: 20px;
 	float: right;
 	text-align: right;
@@ -850,12 +848,12 @@ div.c {
 	height: 50vh;
 	background-color: white;
 	color: black;
-	border: 1px solid rgba(0,0,0,0.5);
-	box-sizing:border-box;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	box-sizing: border-box;
 }
 
 #msgWindow {
-	text-align:left;
+	text-align: left;
 	height: 100%;
 	display: table-cell;
 	vertical-align: bottom;
@@ -867,11 +865,11 @@ div.c {
 }
 
 #onlineUsers {
-	border: 1px solid rgba(0,0,0,0.5);
+	border: 1px solid rgba(0, 0, 0, 0.5);
 	vertical-align: text-top;
 	display: inline-table;
 	padding-left: 10px;
-	padding-top:5px;
+	padding-top: 5px;
 	width: 20%;
 	height: 50vh;
 	background-color: cornflowerblue;
@@ -879,41 +877,41 @@ div.c {
 	font-weight: 100;
 	font-size: x-large;
 	overflow: scroll;
-	box-sizing:border-box;
+	box-sizing: border-box;
 	text-align: left;
 	font-family: helvetica;
 }
 
 #mensagem {
-	margin-top:10px;
+	margin-top: 10px;
 	display: block;
 	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
-	background-color: rgba(0,0,0,0);
+	background-color: rgba(0, 0, 0, 0);
 }
 
 #campoTexto {
 	display: inline-block;
 	vertical-align: middle;
 	width: 80%;
-	border: 3px solid rgba(0,0,0,0.2);
+	border: 3px solid rgba(0, 0, 0, 0.2);
 }
 
 #botaoChat {
-	height:20px;
+	height: 20px;
 	display: inline-block;
 	vertical-align: middle;
 	width: 9%;
-	border:0px;
+	border: 0px;
 }
 
 #resetChatButton {
-	height:20px;
+	height: 20px;
 	display: inline-block;
 	vertical-align: middle;
 	width: 9%;
-	border:0px;
+	border: 0px;
 }
 
 .sendMsgButton {
@@ -955,6 +953,6 @@ div.c {
 }
 
 .ui-state-error {
-	background-color: rgba(178,34,34,0.3) !important;
-	color:white !important;
+	background-color: rgba(178, 34, 34, 0.3) !important;
+	color: white !important;
 }

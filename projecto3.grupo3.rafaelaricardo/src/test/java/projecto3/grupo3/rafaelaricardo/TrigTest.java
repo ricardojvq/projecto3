@@ -48,7 +48,6 @@ public class TrigTest {
 		String exprFinal = calc.getExpression();
 		double nr = Double.parseDouble(exprFinal);
 
-		// assertThat((Math.cos(Math.PI)), is(closeTo(nr, 0.00001)));
 		assertEquals(-1d, nr, 0d);
 	}
 
@@ -60,7 +59,6 @@ public class TrigTest {
 		String exprFinal = calc.getExpression();
 		double nr = Double.parseDouble(exprFinal);
 
-		// assertThat((Math.cos(Math.PI)), is(closeTo(nr, 0.00001)));
 		assertEquals(Math.sin(Math.PI), nr, 0d);
 	}
 
@@ -72,7 +70,6 @@ public class TrigTest {
 		String exprFinal = calc.getExpression();
 		double nr = Double.parseDouble(exprFinal);
 
-		// assertThat((Math.cos(Math.PI)), is(closeTo(nr, 0.00001)));
 		assertEquals(Math.tan(Math.PI), nr, 0d);
 	}
 
@@ -85,13 +82,6 @@ public class TrigTest {
 		String exprFinal = calc.getExpression();
 		double nr = Double.parseDouble(exprFinal);
 
-		// assertThat((Math.cos(Math.PI)), is(closeTo(nr, 0.00001)));
 		assertEquals(2d * Math.cos(x * y), nr, 0d);
-
-		/*
-		 * double result = new ExpressionBuilder("2cos(xy)").variables("x", "y")
-		 * .build().setVariable("x", 0.5d).setVariable("y", 0.25d) .evaluate();
-		 * assertEquals(2d * Math.cos(0.5d * 0.25d), result, 0d);
-		 */
 	}
 }

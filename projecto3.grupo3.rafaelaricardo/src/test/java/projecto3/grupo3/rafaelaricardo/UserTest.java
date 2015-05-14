@@ -1,4 +1,5 @@
 package projecto3.grupo3.rafaelaricardo;
+
 import java.util.ArrayList;
 
 import junit.framework.TestCase;
@@ -8,23 +9,21 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
-
-
 @RunWith(MockitoJUnitRunner.class)
-//@PrepareForTest({FacesContext.class,HttpSession.class})
+// @PrepareForTest({FacesContext.class,HttpSession.class})
 public class UserTest extends TestCase {
 
 	@SuppressWarnings("unused")
 	private RegisteredUsers users;
 	private ArrayList<String> usersLogged = new ArrayList<String>();
 	private credValidation cred;
+
 	@Before
 	public void setup() throws Exception {
 		cred = new credValidation();
 		cred.setUsers(new RegisteredUsers());
 		cred.setLoggedUser(new LoggedUser());
 	}
-
 
 	@Test
 	public void existentUser() {
@@ -62,7 +61,6 @@ public class UserTest extends TestCase {
 		String result = cred.doLogin();
 		assertEquals("Username já logado!", result);
 
-
 	}
 
 	@Test
@@ -74,7 +72,6 @@ public class UserTest extends TestCase {
 		String result = cred.doLogin();
 		assertEquals("Password inválida", result);
 
-
 	}
 
 	@Test
@@ -83,24 +80,23 @@ public class UserTest extends TestCase {
 		String result = cred.doLogin();
 		assertEquals("Username inexistente", result);
 
-
 	}
 
-	//	@Test
-	//	public void userLoginSuccess() throws Exception  {
-	//		FacesContext context = ContextMocker.mockFacesContext();
-	//		ExternalContext ext = Mockito.mock(ExternalContext.class);
-	//		HttpServletRequest mockRequest = Mockito.mock(HttpServletRequest.class);
-	//		HttpSession mockSession = new MockHttpSession();
-	//		Map<String, Object> sessionMap = new HashMap<String, Object>();
-	//		Mockito.when(context.getExternalContext()).thenReturn(ext);
-	//		Mockito.when(ext.getSessionMap()).thenReturn(sessionMap);
-	//		Mockito.when(mockRequest.getSession()).thenReturn(mockSession);
-	//		cred.setUsername("ricardo");
-	//		cred.setPassword("123");
-	//		cred.setUsers(new RegisteredUsers());
-	//		String result = cred.doLogin();
-	//		assertEquals("/Authorized/calc1.xhtml?faces-redirect=true",result);
-	//	}
+	// @Test
+	// public void userLoginSuccess() throws Exception {
+	// FacesContext context = ContextMocker.mockFacesContext();
+	// ExternalContext ext = Mockito.mock(ExternalContext.class);
+	// HttpServletRequest mockRequest = Mockito.mock(HttpServletRequest.class);
+	// HttpSession mockSession = new MockHttpSession();
+	// Map<String, Object> sessionMap = new HashMap<String, Object>();
+	// Mockito.when(context.getExternalContext()).thenReturn(ext);
+	// Mockito.when(ext.getSessionMap()).thenReturn(sessionMap);
+	// Mockito.when(mockRequest.getSession()).thenReturn(mockSession);
+	// cred.setUsername("ricardo");
+	// cred.setPassword("123");
+	// cred.setUsers(new RegisteredUsers());
+	// String result = cred.doLogin();
+	// assertEquals("/Authorized/calc1.xhtml?faces-redirect=true",result);
+	// }
 
 }

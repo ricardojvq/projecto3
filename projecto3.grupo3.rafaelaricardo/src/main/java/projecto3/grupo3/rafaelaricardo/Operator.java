@@ -5,13 +5,12 @@ public class Operator {
 	private String name;
 	private int number;
 	private String percentage;
-	
-		
+
 	public Operator(String name) {
 		super();
 		this.name = name;
-		number=1;
-		
+		number = 1;
+
 	}
 
 	public String getName() {
@@ -21,18 +20,18 @@ public class Operator {
 	public void setNumber() {
 		this.number++;
 	}
-	
+
 	public int getNumber() {
 		return number;
 	}
-	
+
 	public void calcPercentage(double total) {
-		Double p = ((number/total)*100);
+		Double p = ((number / total) * 100);
 		percentage = String.format("%.1f", p);
 	}
-	
-	public String getPercentage(){
+
+	public String getPercentage() {
 		return percentage;
 	}
-	
+
 }

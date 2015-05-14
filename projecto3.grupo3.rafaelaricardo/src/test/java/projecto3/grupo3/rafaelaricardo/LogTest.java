@@ -22,7 +22,6 @@ public class LogTest extends TestCase {
 	@Override
 	@Before
 	public void setUp() {
-
 	}
 
 	@Test

@@ -10,25 +10,27 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class Authentication implements Filter {
 	private FilterConfig customedFilterConfig;
 
+	@Override
 	public void init(FilterConfig customedFilterConfig) throws ServletException {
 		this.customedFilterConfig = customedFilterConfig;
 	}
 
 	@Override
-	public void doFilter(ServletRequest req, ServletResponse resp,FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest req, ServletResponse resp,
+			FilterChain chain) throws IOException, ServletException {
 
-		if (((HttpServletRequest)req).getSession().getAttribute("uname") == null) {
-			((HttpServletResponse)resp).sendRedirect("../NonAuthorized.xhtml");
+		if (((HttpServletRequest) req).getSession().getAttribute("uname") == null) {
+			((HttpServletResponse) resp).sendRedirect("../NonAuthorized.xhtml");
 		} else {
-			chain.doFilter(req, resp);  
+			chain.doFilter(req, resp);
 		}
 	}
 
+	@Override
 	public void destroy() {
 		customedFilterConfig = null;
 	}

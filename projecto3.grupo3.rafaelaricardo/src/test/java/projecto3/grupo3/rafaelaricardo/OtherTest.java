@@ -24,12 +24,6 @@ public class OtherTest {
 	public void setUp() {
 	}
 
-	/*
-	 * @Test(expected = java.lang.IllegalArgumentException.class) public void
-	 * exceptionSQRTTest() { String expr = "sqrt(-1)"; calc.setExpression(expr);
-	 * calc.getResult(); }
-	 */
-
 	@Test
 	public void testNegSQRT() {
 		String expression = "sqrt(-1)";
@@ -38,7 +32,6 @@ public class OtherTest {
 		String exprFinal = calc.getExpression();
 
 		assertThat("Operacao invalida", equalTo(exprFinal));
-
 	}
 
 	@Test
@@ -73,7 +66,6 @@ public class OtherTest {
 		double nr = Double.parseDouble(exprFinal);
 
 		assertEquals(5000000.0, nr, 0d);
-
 	}
 
 }

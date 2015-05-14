@@ -3,10 +3,8 @@ package projecto3.grupo3.rafaelaricardo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import javax.annotation.processing.RoundEnvironment;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
@@ -42,8 +40,6 @@ public class Calculator implements Serializable {
 	private long endTime;
 
 	private ArrayList<HistTime> histAndTime = new ArrayList<HistTime>();
-
-
 
 	public boolean isHistDiv() {
 		return histDiv;
@@ -99,137 +95,173 @@ public class Calculator implements Serializable {
 		}
 		String add = "";
 		String op = "";
-		switch(event.getComponent().getId()) {
+		switch (event.getComponent().getId()) {
 		case "AC": {
 			this.expression = "0";
 			break;
-		} case "moreLess": { 
+		}
+		case "moreLess": {
 			negative();
 			break;
-		} case "percent": {
+		}
+		case "percent": {
 			startTime = System.nanoTime();
 			this.expression += "%";
 			String exprTemp = this.expression;
 			getPercentage();
-			if (percentageValid) { 
+			if (percentageValid) {
 				op = "%";
 				endTime = System.nanoTime();
 				histAndTime.add(new HistTime(exprTemp, this.totalTime()));
 				calcHistory.addToHistory(exprTemp);
 			}
 			break;
-		} case "divide": {
-			add = "/"; 
+		}
+		case "divide": {
+			add = "/";
 			op = "/";
 			break;
-		} case "multiply": {
+		}
+		case "multiply": {
 			add = "*";
 			op = "*";
 			break;
-		} case "plus": {
+		}
+		case "plus": {
 			add = "+";
 			op = "+";
 			break;
-		} case "minus": {
-			add = "-";	
+		}
+		case "minus": {
+			add = "-";
 			op = "-";
 			break;
-		} case "equal": {
+		}
+		case "equal": {
 			this.getResult();
 			break;
-		} case "del": {
+		}
+		case "del": {
 			if (this.expression.length() > 1) {
-				this.expression = this.expression.substring(0, expression.length()-1);
+				this.expression = this.expression.substring(0,
+						expression.length() - 1);
 			} else if (this.expression.length() == 1) {
 				this.expression = "0";
 			} else {
 				this.expression = "0";
 			}
 			break;
-		} case "dot": {
+		}
+		case "dot": {
 			add = ".";
 			break;
-		} case "zero": {
+		}
+		case "zero": {
 			if (this.expression.length() > 0) {
 				add = "0";
 			} else {
 				add = "0";
 			}
 			break;
-		} case "one": {
+		}
+		case "one": {
 			add = "1";
 			break;
-		} case "two": {
+		}
+		case "two": {
 			add = "2";
 			break;
-		} case "three": {
+		}
+		case "three": {
 			add = "3";
 			break;
-		} case "four": {
+		}
+		case "four": {
 			add = "4";
 			break;
-		} case "five": {
+		}
+		case "five": {
 			add = "5";
 			break;
-		} case "six": {
+		}
+		case "six": {
 			add = "6";
 			break;
-		} case "seven": {
+		}
+		case "seven": {
 			add = "7";
 			break;
-		} case "eight": {
+		}
+		case "eight": {
 			add = "8";
 			break;
-		} case "nine": {
+		}
+		case "nine": {
 			add = "9";
 			break;
-		} case "sen": {
+		}
+		case "sen": {
 			add = "sin(";
 			break;
-		} case "cos": {
+		}
+		case "cos": {
 			add = "cos(";
 			break;
-		} case "tan": {
+		}
+		case "tan": {
 			add = "tan(";
 			break;
-		} case "asen": {
+		}
+		case "asen": {
 			add = "asin(";
 			break;
-		} case "acos": {
+		}
+		case "acos": {
 			add = "acos(";
 			break;
-		} case "atan": {
+		}
+		case "atan": {
 			add = "atan(";
 			break;
-		} case "ln": {
+		}
+		case "ln": {
 			add = "log(";
 			break;
-		} case "log": {
+		}
+		case "log": {
 			add = "log10(";
 			break;
-		} case "factor": {
+		}
+		case "factor": {
 			this.addToExpression("!");
 			getFactorial();
 			break;
-		} case "pot2": {
+		}
+		case "pot2": {
 			add = "^2";
 			break;
-		} case "raiz2": {
+		}
+		case "raiz2": {
 			add = "sqrt(";
 			break;
-		} case "euler": {
+		}
+		case "euler": {
 			add = "e";
 			break;
-		} case "openP": {
+		}
+		case "openP": {
 			add = "(";
 			break;
-		} case "closeP": {
+		}
+		case "closeP": {
 			add = ")";
 			break;
-		} case "modulo": {
+		}
+		case "modulo": {
 			add = "abs(";
 			break;
-		} case "pi": {
+		}
+		case "pi": {
 			add = "PI";
 			break;
 		}
@@ -255,24 +287,32 @@ public class Calculator implements Serializable {
 	public void negative() {
 		String[] exp = expression.split("[-+*/]");
 		if (expression.length() > 0) {
-			int i = expression.indexOf(exp[exp.length-1]); // índice do último número (depois do operador)
-			String last = exp[exp.length-1]; // último número
+			int i = expression.indexOf(exp[exp.length - 1]); // índice do
+																// último
+																// número
+																// (depois do
+																// operador)
+			String last = exp[exp.length - 1]; // último número
 			if (i == 0) {
 				expression = "-" + expression;
 			} else if (i == 1 && expression.charAt(0) == '-') {
 				expression = expression.substring(1);
 			} else {
-				if (expression.substring(i-1, i).equals("-")) {
-					if (expression.substring(i-2, i-1).equals("+") || expression.substring(i-2, i-1).equals("*") || expression.substring(i-2, i-1).equals("/")) {
-						expression = expression.substring(0, i-1) + last;
+				if (expression.substring(i - 1, i).equals("-")) {
+					if (expression.substring(i - 2, i - 1).equals("+")
+							|| expression.substring(i - 2, i - 1).equals("*")
+							|| expression.substring(i - 2, i - 1).equals("/")) {
+						expression = expression.substring(0, i - 1) + last;
 					} else {
-						expression = expression.substring(0, i-1) + "+" + last;
+						expression = expression.substring(0, i - 1) + "+"
+								+ last;
 					}
 				} else {
 					Double r = Double.parseDouble(last);
 					Double f = r * -1;
 					int ind = expression.indexOf(last);
-					expression = expression.substring(0, ind) + Double.toString(f);
+					expression = expression.substring(0, ind)
+							+ Double.toString(f);
 				}
 			}
 		} else {
@@ -285,9 +325,9 @@ public class Calculator implements Serializable {
 		String per = "";
 		int indArray = 0;
 		Double result = 0.0;
-		for (String s:exp) {
+		for (String s : exp) {
 			if (s.contains("%")) {
-				per = s.substring(0, s.length()-1);
+				per = s.substring(0, s.length() - 1);
 				break;
 			}
 			indArray++;
@@ -295,31 +335,31 @@ public class Calculator implements Serializable {
 		int i = expression.indexOf(per + "%");
 		if (i == 0) {
 			Double num = Double.parseDouble(per);
-			Double percentage = num/100;
+			Double percentage = num / 100;
 			expression = Double.toString(percentage);
 			percentageValid = true;
 		} else {
-			double num1 = Double.parseDouble(exp[indArray-1]);
+			double num1 = Double.parseDouble(exp[indArray - 1]);
 			double num2 = Double.parseDouble(per);
-			if (expression.charAt(i-1) == '+') {
-				result = num1 + (num1*num2)/100;
-			} else if (expression.charAt(i-1) == '-') {
-				result = num1 - (num1*num2)/100;
-			} else if (expression.charAt(i-1) == '*') {
-				result = (num1*num2)/100;
+			if (expression.charAt(i - 1) == '+') {
+				result = num1 + (num1 * num2) / 100;
+			} else if (expression.charAt(i - 1) == '-') {
+				result = num1 - (num1 * num2) / 100;
+			} else if (expression.charAt(i - 1) == '*') {
+				result = (num1 * num2) / 100;
 			} else {
-				if (num2==0) {
+				if (num2 == 0) {
 					expression = "Erro: Divisao por zero!";
 					result = 0.0;
 				} else {
-					result = (num1*100)/num2;
+					result = (num1 * 100) / num2;
 				}
 			}
 			if (result == 0.0) {
 				// Do nothing
 			} else {
 				String r = Double.toString(result);
-				int indDireita = expression.indexOf(exp[indArray-1]);
+				int indDireita = expression.indexOf(exp[indArray - 1]);
 				expression = expression.substring(0, indDireita) + r;
 				percentageValid = true;
 			}
@@ -334,13 +374,13 @@ public class Calculator implements Serializable {
 			String[] expSplit = expression.split("[-+*/]");
 			int index = -1;
 			boolean notNumber = false;
-			for (String s:expSplit) {
+			for (String s : expSplit) {
 				index++;
 				if (s.contains("!")) {
-					String temp = s.substring(0,s.length()-1);
+					String temp = s.substring(0, s.length() - 1);
 					String temp2 = s;
 					for (int i = 0; i < temp2.length(); i++) {
-						int num = (int)temp2.charAt(i);
+						int num = temp2.charAt(i);
 						if ((num <= 47 || num >= 58) && num != 33) {
 							notNumber = true;
 							break;
@@ -357,7 +397,8 @@ public class Calculator implements Serializable {
 							}
 							BigInteger bigResult = BigInteger.valueOf(factTemp);
 							fact = bigResult.toString();
-							expression = expression.replace(expSplit[index],fact);
+							expression = expression.replace(expSplit[index],
+									fact);
 						} else {
 							this.expression = "Numero muito grande";
 						}
@@ -375,17 +416,18 @@ public class Calculator implements Serializable {
 			getFactorial();
 		}
 		for (int i = 0; i < expression.length(); i++) {
-			if (expression.charAt(i) == '(') brackets++;
-			if (expression.charAt(i) == ')') brackets--;
+			if (expression.charAt(i) == '(')
+				brackets++;
+			if (expression.charAt(i) == ')')
+				brackets--;
 		}
-		if(brackets==0){
+		if (brackets == 0) {
 			double euler = Math.E;
 			double pi = Math.PI;
 			expression = expression.replaceAll("PI", Double.toString(pi));
 			expression = expression.replaceAll("e", Double.toString(euler));
 
-			Expression e = new ExpressionBuilder(expression)
-			.build();
+			Expression e = new ExpressionBuilder(expression).build();
 			try {
 				String expr = this.expression;
 				double result = e.evaluate();
@@ -403,14 +445,12 @@ public class Calculator implements Serializable {
 				this.reset = true;
 			}
 			operators.clear();
-		}else{
+		} else {
 			expression = "Operacao invalida";
-			brackets=0;
+			brackets = 0;
 		}
 
 	}
-
-
 
 	public ArrayList<HistTime> getHistAndTime() {
 		return histAndTime;
@@ -433,16 +473,14 @@ public class Calculator implements Serializable {
 	}
 
 	public void reuse(ActionEvent ae) {
-		expression = (String)ae.getComponent().getAttributes().get("reut");
+		expression = (String) ae.getComponent().getAttributes().get("reut");
 	}
 
 	public String totalTime() {
 		long dif = endTime - startTime;
-		double ms = (double)(dif/1000000.0);
-		String f = String.format("%.2f",ms);
-		return f+" ms";
+		double ms = dif / 1000000.0;
+		String f = String.format("%.2f", ms);
+		return f + " ms";
 	}
-
-
 
 }

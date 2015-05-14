@@ -33,7 +33,7 @@ public class MsgBean {
 	public void logoutMsg(String uname) {
 		msg.setUsername("AVISO");
 		msg.setDate();
-		msg.setMessage("( *** "+uname+" abandonou a sala ***)");
+		msg.setMessage("( *** " + uname + " abandonou a sala ***)");
 		chat.sendMessage(msg);
 		if (regUsers.getLoggedUsers().size() == 0) {
 			chat.getMessages().clear();
@@ -43,7 +43,8 @@ public class MsgBean {
 	public void timedOut() {
 		msg.setUsername("AVISO");
 		msg.setDate();
-		msg.setMessage("( *** Sessão de "+logUser.getUsername()+" expirou ***)");
+		msg.setMessage("( *** Sessão de " + logUser.getUsername()
+				+ " expirou ***)");
 		chat.sendMessage(msg);
 	}
 
@@ -58,9 +59,8 @@ public class MsgBean {
 	public void loginMsg(String username) {
 		msg.setUsername("AVISO");
 		msg.setDate();
-		msg.setMessage("( *** "+username+" entrou na sala *** )");
+		msg.setMessage("( *** " + username + " entrou na sala *** )");
 		chat.sendMessage(msg);
 	}
-
 
 }

@@ -1,6 +1,5 @@
 package projecto3.grupo3.rafaelaricardo;
 
-import static org.junit.Assert.*;
 import junit.framework.TestCase;
 
 import org.jmock.auto.Mock;
@@ -11,7 +10,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PercentageTest extends TestCase {
-	
+
 	@Mock
 	History calcHistory;
 	@Mock
@@ -25,7 +24,7 @@ public class PercentageTest extends TestCase {
 		calc.setExpression(expr);
 		calc.getPercentage();
 	}
-	
+
 	@Test
 	public void percentageTest() {
 		String expr = "3%";
