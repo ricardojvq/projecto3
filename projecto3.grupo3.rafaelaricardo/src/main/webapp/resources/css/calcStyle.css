@@ -953,3 +953,8 @@ div.c {
 	font-family: helvetica;
 	font-weight: 100;
 }
+
+.ui-state-error {
+	background-color: rgba(178,34,34,0.3) !important;
+	color:white !important;
+}

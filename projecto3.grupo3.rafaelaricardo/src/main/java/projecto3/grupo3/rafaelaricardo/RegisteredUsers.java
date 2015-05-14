@@ -2,22 +2,19 @@ package projecto3.grupo3.rafaelaricardo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentSkipListSet;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
 @ApplicationScoped
 public class RegisteredUsers implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	private ConcurrentHashMap<String,String> users;
 	private ArrayList<String> loggedUsers = new ArrayList<>();
-	
+
 	public RegisteredUsers() {
 		users = new ConcurrentHashMap<String, String>();
 		users.put("ricardo", "123");
@@ -39,17 +36,17 @@ public class RegisteredUsers implements Serializable {
 	public void setLoggedUsers(ArrayList<String> loggedUsers) {
 		this.loggedUsers = loggedUsers;
 	}
-	
+
 	public void addToLogged(String u) {
 		loggedUsers.add(u);
 	}
-	
-//	public String getTezting() {
-//		return this.tezting;
-//	}
-	
-	
-	
-	
+
+	//	public String getTezting() {
+	//		return this.tezting;
+	//	}
+
+
+
+
 
 }

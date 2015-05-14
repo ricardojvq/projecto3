@@ -3,21 +3,14 @@ package projecto3.grupo3.rafaelaricardo;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.concurrent.ConcurrentHashMap;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.context.FacesContextFactory;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Named
@@ -40,6 +33,8 @@ public class credValidation implements Serializable {
 	private String result = "";
 	private boolean errorMsg = false;
 
+	HttpSession session;
+
 	@ManagedProperty("#{loggedUser}")
 	FacesContext faces;
 
@@ -59,47 +54,61 @@ public class credValidation implements Serializable {
 		this.password = password;
 	}
 
-	
+
 	public String doLogin() {
-		if (users.getUsers().containsKey(username)) {
-			if (password.equals(users.getUsers().get(username))) {
-				if (users.getLoggedUsers().contains(username)) {
-					errorMsg = true;
-					result = "Username já logado!";
+		synchronized (users.getLoggedUsers()) {
+			if (users.getUsers().containsKey(username)) {
+				if (password.equals(users.getUsers().get(username))) {
+					if (users.getLoggedUsers().contains(username)) {
+						errorMsg = true;
+						result = "Username já logado!";
+					} else {
+						errorMsg = false;
+						loggedUser.setUsername(username);
+						loggedUser.setLogged(true);
+						users.getLoggedUsers().add(loggedUser.getUsername());
+						msgBean.loginMsg(username);
+						this.setFacesContext();
+						result = "/Authorized/calc1.xhtml?faces-redirect=true";
+						password = "";
+					}
 				} else {
-					errorMsg = false;
-					loggedUser.setUsername(username);
-					loggedUser.setLogged(true);
-					users.getLoggedUsers().add(loggedUser.getUsername());
-					this.setFacesContext();
-					result = "/Authorized/calc1.xhtml?faces-redirect=true";
-					password = "";
+					result = "Password inválida";
+					errorMsg = true;
 				}
 			} else {
-				result = "Password inválida";
+				result = "Username inexistente";
 				errorMsg = true;
 			}
-		} else {
-			result = "Username inexistente";
-			errorMsg = true;
+			return result;
 		}
-		return result;
 	}
-	
+
 	public void setFacesContext() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext ext = context.getExternalContext();
 		HttpServletRequest request = (HttpServletRequest) ext.getRequest();
-		request.getSession().setAttribute("uname", username);
+		HttpSession session = request.getSession();
+		session.setAttribute("uname", username);
 		ext.getSessionMap().put(LoggedUser.AUTH_KEY, username);
 	}
 
-	@SuppressWarnings("static-access")
+	public void invalidateSession() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext ext = context.getExternalContext();
+		ext.invalidateSession();
+	}
+
 	public String doLogout() {
-		msgBean.logoutMsg();
-		faces.getCurrentInstance().getExternalContext().invalidateSession();
-		users.getLoggedUsers().remove(loggedUser.getUsername());
-		return "/login.xhtml?faces-redirect=true";
+		String uname = loggedUser.getUsername();
+		invalidateSession();
+		synchronized (users.getLoggedUsers()) {
+			System.out.println(users.getLoggedUsers().size());
+			users.getLoggedUsers().remove(users.getLoggedUsers().indexOf(loggedUser.getUsername()));
+			System.out.println(users.getLoggedUsers().size());
+		}
+		msgBean.logoutMsg(uname);
+		return "/login.xhtml?faces-redirect=true";	
 	}
 
 	@SuppressWarnings("static-access")
@@ -114,6 +123,10 @@ public class credValidation implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public void timedOut() {
+		users.getLoggedUsers().remove(loggedUser.getUsername());
 	}
 
 	public boolean isErrorMsg() {
@@ -152,11 +165,15 @@ public class credValidation implements Serializable {
 
 	public void setUsers(RegisteredUsers u) {
 		this.users = u;
-		
+
 	}
-	
+
 	public void setLoggedUser(LoggedUser lu) {
 		this.loggedUser = lu;
+	}
+
+	public void setLoggedUsers(ArrayList<String> lUsers) {
+		this.users.setLoggedUsers(lUsers);
 	}
 
 
