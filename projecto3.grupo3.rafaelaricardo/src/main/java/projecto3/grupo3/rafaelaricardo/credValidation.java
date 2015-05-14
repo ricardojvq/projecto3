@@ -9,13 +9,16 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.context.FacesContextFactory;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Named
 @RequestScoped
@@ -56,9 +59,8 @@ public class credValidation implements Serializable {
 		this.password = password;
 	}
 
-	@SuppressWarnings("static-access")
+	
 	public String doLogin() {
-		ServletRequest req = (HttpServletRequest)faces.getCurrentInstance().getExternalContext().getRequest();
 		if (users.getUsers().containsKey(username)) {
 			if (password.equals(users.getUsers().get(username))) {
 				if (users.getLoggedUsers().contains(username)) {
@@ -68,9 +70,8 @@ public class credValidation implements Serializable {
 					errorMsg = false;
 					loggedUser.setUsername(username);
 					loggedUser.setLogged(true);
-					((HttpServletRequest)req).getSession().setAttribute("uname", username);
-					faces.getCurrentInstance().getExternalContext().getSessionMap().put(LoggedUser.AUTH_KEY, username);
 					users.getLoggedUsers().add(loggedUser.getUsername());
+					this.setFacesContext();
 					result = "/Authorized/calc1.xhtml?faces-redirect=true";
 					password = "";
 				}
@@ -83,6 +84,14 @@ public class credValidation implements Serializable {
 			errorMsg = true;
 		}
 		return result;
+	}
+	
+	public void setFacesContext() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext ext = context.getExternalContext();
+		HttpServletRequest request = (HttpServletRequest) ext.getRequest();
+		request.getSession().setAttribute("uname", username);
+		ext.getSessionMap().put(LoggedUser.AUTH_KEY, username);
 	}
 
 	@SuppressWarnings("static-access")
@@ -124,7 +133,7 @@ public class credValidation implements Serializable {
 			errorMsg = true;
 			result = "Já existente!";
 		} else {
-			if (password != null) {
+			if (password != null && !password.equals("")) {
 				users.getUsers().put(username, password);
 				username = "";
 				password = "";
@@ -139,6 +148,15 @@ public class credValidation implements Serializable {
 
 	public ArrayList<String> usersOnline() {
 		return users.getLoggedUsers();
+	}
+
+	public void setUsers(RegisteredUsers u) {
+		this.users = u;
+		
+	}
+	
+	public void setLoggedUser(LoggedUser lu) {
+		this.loggedUser = lu;
 	}
 
 

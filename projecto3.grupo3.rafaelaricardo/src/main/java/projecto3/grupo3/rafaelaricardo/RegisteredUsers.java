@@ -2,6 +2,7 @@ package projecto3.grupo3.rafaelaricardo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 
@@ -42,6 +43,10 @@ public class RegisteredUsers implements Serializable {
 	public void addToLogged(String u) {
 		loggedUsers.add(u);
 	}
+	
+//	public String getTezting() {
+//		return this.tezting;
+//	}
 	
 	
 	
