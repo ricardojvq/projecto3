@@ -24,7 +24,15 @@ public class MsgBean {
 		msg = new Message();
 	}
 
+	public void setChat(Chat chat) {
+		this.chat = chat;
+	}
+
 	public void sendMsg(ActionEvent ae) {
+		sendMsg();
+	}
+
+	public void sendMsg() {
 		msg.setUsername(logUser.getUsername());
 		msg.setDate();
 		chat.sendMessage(msg);
@@ -61,6 +69,10 @@ public class MsgBean {
 		msg.setDate();
 		msg.setMessage("( *** " + username + " entrou na sala *** )");
 		chat.sendMessage(msg);
+	}
+
+	public Message getMsg() {
+		return msg;
 	}
 
 }

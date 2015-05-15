@@ -6,7 +6,9 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -73,5 +75,28 @@ public class BasicTest {
 
 		assertThat("Divisao por zero", equalTo(exprFinal));
 	}
+
+	@Test
+	public void expression1() {
+		String e = "1+2-4*5/6";
+		calc.setExpression(e);
+		calc.getResult();
+		String eFinal = calc.getExpression();
+		double dFinal = Double.parseDouble(eFinal);
+		assertThat(-0.333,is(closeTo(dFinal, 0.001)));
+	}
+
+	@Rule
+	public ExpectedException excepcao = ExpectedException.none();
+
+	@Test
+	public void testException() {
+		excepcao.expect(NumberFormatException.class);
+		String e = "3..";
+		calc.setExpression(e);
+		calc.getResult();
+	}
+
+
 
 }

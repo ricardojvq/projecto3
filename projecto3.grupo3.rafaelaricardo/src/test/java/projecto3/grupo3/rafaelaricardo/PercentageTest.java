@@ -1,5 +1,8 @@
 package projecto3.grupo3.rafaelaricardo;
 
+import static org.hamcrest.Matchers.closeTo;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import junit.framework.TestCase;
 
 import org.jmock.auto.Mock;
@@ -32,6 +35,15 @@ public class PercentageTest extends TestCase {
 		calc.getPercentage();
 		String eFinal = calc.getExpression();
 		assertEquals("3% é 0.03", "0.03", eFinal);
+	}
+
+	@Test
+	public void percentageOfPercentage() {
+		String e = "0.09 + 9%";
+		calc.setExpression(e);
+		calc.getPercentage();
+		double dFinal = Double.parseDouble(calc.getExpression());
+		assertThat(0.09809,is(closeTo(dFinal, 0.00001)));
 	}
 
 }

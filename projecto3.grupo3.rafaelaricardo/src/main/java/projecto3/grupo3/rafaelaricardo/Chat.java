@@ -1,8 +1,8 @@
 package projecto3.grupo3.rafaelaricardo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
@@ -18,23 +18,29 @@ public class Chat implements Serializable {
 
 	private int count = 0;
 
-	private CopyOnWriteArrayList<Message> messages = new CopyOnWriteArrayList<Message>();
+	private ArrayList<Message> messages;
+
+	public Chat() {
+		messages = new ArrayList<Message>();
+	}
 
 	public List<Message> getMessages() {
+		/*
 		for (Message m : messages) {
 			if (m.getMessage() == null) {
 				messages.remove(m);
 			}
 		}
+		 */
 		return messages;
 	}
 
-	public void setMessages(CopyOnWriteArrayList<Message> messages) {
+	public void setMessages(ArrayList<Message> messages) {
 		this.messages = messages;
 	}
 
 	public void sendMessage(Message msg) {
-		messages.add(msg);
+		this.messages.add(msg);
 		this.sentMsg();
 
 	}
