@@ -10,7 +10,6 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-// @PrepareForTest({FacesContext.class,HttpSession.class})
 public class UserTest extends TestCase {
 
 	@SuppressWarnings("unused")
@@ -59,7 +58,7 @@ public class UserTest extends TestCase {
 		cred.setUsername("ricardo");
 		cred.setPassword("123");
 		String result = cred.doLogin();
-		assertEquals("Username já logado!", result);
+		assertEquals("Utilizador com sessão iniciada e activa!", result);
 
 	}
 

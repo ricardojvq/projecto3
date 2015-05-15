@@ -60,7 +60,7 @@ public class CredValidation implements Serializable {
 				if (password.equals(users.getUsers().get(username))) {
 					if (users.getLoggedUsers().contains(username)) {
 						errorMsg = true;
-						result = "Username já logado!";
+						result = "Utilizador com sessão iniciada e activa!";
 					} else {
 						errorMsg = false;
 						loggedUser.setUsername(username);
