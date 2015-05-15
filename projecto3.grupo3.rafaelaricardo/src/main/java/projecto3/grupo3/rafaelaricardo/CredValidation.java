@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 @Named
 @RequestScoped
-public class credValidation implements Serializable {
+public class CredValidation implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -102,10 +102,8 @@ public class credValidation implements Serializable {
 		String uname = loggedUser.getUsername();
 		invalidateSession();
 		synchronized (users.getLoggedUsers()) {
-			System.out.println(users.getLoggedUsers().size());
 			users.getLoggedUsers().remove(
 					users.getLoggedUsers().indexOf(loggedUser.getUsername()));
-			System.out.println(users.getLoggedUsers().size());
 		}
 		msgBean.logoutMsg(uname);
 		return "/login.xhtml?faces-redirect=true";
@@ -115,12 +113,12 @@ public class credValidation implements Serializable {
 	public void timeOut() {
 		msgBean.timedOut();
 		faces.getCurrentInstance().getExternalContext().getSessionMap()
-				.remove(LoggedUser.AUTH_KEY);
+		.remove(LoggedUser.AUTH_KEY);
 		faces.getCurrentInstance().getExternalContext().invalidateSession();
 		users.getLoggedUsers().remove(loggedUser.getUsername());
 		try {
 			faces.getCurrentInstance().getExternalContext()
-					.redirect("/Projecto3/login.xhtml");
+			.redirect("/Projecto3/login.xhtml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -144,19 +142,22 @@ public class credValidation implements Serializable {
 	}
 
 	public void newUser() {
-		if (users.getUsers().containsKey(username)) {
-			errorMsg = true;
-			result = "Já existente!";
-		} else {
-			if (password != null && !password.equals("")) {
-				users.getUsers().put(username, password);
-				username = "";
-				password = "";
+		synchronized (users.getUsers()) {
+
+			if (users.getUsers().containsKey(username)) {
 				errorMsg = true;
-				result = "Utilizador criado com sucesso!";
+				result = "Já existente!";
 			} else {
-				errorMsg = true;
-				result = "Password inválida";
+				if (password != null && !password.equals("")) {
+					users.getUsers().put(username, password);
+					username = "";
+					password = "";
+					errorMsg = true;
+					result = "Utilizador criado com sucesso!";
+				} else {
+					errorMsg = true;
+					result = "Password inválida";
+				}
 			}
 		}
 	}

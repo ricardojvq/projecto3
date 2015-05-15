@@ -16,11 +16,11 @@ public class UserTest extends TestCase {
 	@SuppressWarnings("unused")
 	private RegisteredUsers users;
 	private ArrayList<String> usersLogged = new ArrayList<String>();
-	private credValidation cred;
+	private CredValidation cred;
 
 	@Before
 	public void setup() throws Exception {
-		cred = new credValidation();
+		cred = new CredValidation();
 		cred.setUsers(new RegisteredUsers());
 		cred.setLoggedUser(new LoggedUser());
 	}

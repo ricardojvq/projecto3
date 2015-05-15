@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class Authentication implements Filter {
+	@SuppressWarnings("unused")
 	private FilterConfig customedFilterConfig;
 
 	@Override
