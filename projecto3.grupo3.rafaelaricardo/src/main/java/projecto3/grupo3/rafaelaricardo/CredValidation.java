@@ -66,7 +66,7 @@ public class CredValidation implements Serializable {
 						loggedUser.setUsername(username);
 						loggedUser.setLogged(true);
 						users.getLoggedUsers().add(loggedUser.getUsername());
-						msgBean.loginMsg(username);
+						//						msgBean.loginMsg(username);
 						this.setFacesContext();
 						result = "/Authorized/calc1.xhtml?faces-redirect=true";
 						password = "";
